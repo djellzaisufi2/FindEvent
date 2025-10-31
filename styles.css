@@ -92,9 +92,57 @@ body {
     filter: drop-shadow(0 0 8px rgba(255, 180, 80, 0.7));
 }
 
+/* ---------------- CITY SEARCH ---------------- */
+.city-search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-icon:hover {
+    transform: scale(1.2);
+}
+
+.city-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 0.5rem;
+    z-index: 1000;
+}
+
+.city-search-container:hover .city-dropdown,
+.city-dropdown:hover {
+    display: block;
+}
+
+.city-select {
+    padding: 0.5rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    background: white;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+    min-width: 180px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.city-select:hover,
+.city-select:focus {
+    border-color: #ff7b54;
+}
+
 /* ICONS */
 .globe,
-.search-icon,
 .heart-icon,
 .cart-icon {
     font-size: 1rem;
@@ -260,6 +308,133 @@ body {
     color: #444;
 }
 
+/* ---------------- CITY EVENTS ---------------- */
+.city-events {
+    max-width: 1000px;
+    margin: 2rem auto 0;
+    padding: 2rem;
+    animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.city-events-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ff7b54;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.events-list {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 1rem 0;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.events-list::-webkit-scrollbar {
+    height: 8px;
+}
+
+.events-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.events-list::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #ff7b54, #ffb26b);
+    border-radius: 10px;
+}
+
+.events-list::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, #ff6b40, #ff9f50);
+}
+
+.event-card-item {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 320px;
+    max-width: 320px;
+    flex-shrink: 0;
+}
+
+.event-card-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(255, 123, 84, 0.2);
+}
+
+.event-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.event-icon {
+    font-size: 2rem;
+}
+
+.event-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #333;
+    flex: 1;
+}
+
+.event-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.event-card-date,
+.event-card-location {
+    font-size: 0.9rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.event-card-price {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background: linear-gradient(90deg, #ff7b54, #ffb26b);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    width: fit-content;
+}
+
+.no-events-msg {
+    text-align: center;
+    color: #999;
+    font-size: 1.1rem;
+    padding: 2rem;
+    font-style: italic;
+    width: 100%;
+}
+
 /* ---------------- FEATURED SECTION ---------------- */
 .featured-section {
     padding: 3rem 2rem;
@@ -383,6 +558,23 @@ body {
 
     .featured-events {
         grid-template-columns: 1fr;
+    }
+
+    .city-events {
+        padding: 1.5rem 1rem;
+    }
+
+    .city-events-title {
+        font-size: 1.5rem;
+    }
+
+    .events-list {
+        gap: 1rem;
+    }
+
+    .event-card-item {
+        min-width: 280px;
+        max-width: 280px;
     }
 }
 
