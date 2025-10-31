@@ -98,6 +98,13 @@ body {
 .heart-icon,
 .cart-icon {
     font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.heart-icon:hover,
+.cart-icon:hover {
+    transform: scale(1.2);
 }
 
 .heart-icon {
@@ -137,10 +144,13 @@ body {
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
 }
 
 .nav-link:hover {
     color: #ff7b54;
+    background: rgba(255, 123, 84, 0.1);
 }
 
 .sign-in-top {
@@ -148,6 +158,11 @@ body {
     font-weight: 500;
     cursor: pointer;
     font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.sign-in-top:hover {
+    color: #ff7b54;
 }
 
 /* ---------------- IMAGE SECTION ---------------- */
@@ -157,13 +172,43 @@ body {
     justify-content: center;
     align-items: center;
     padding: 4rem 0;
+    position: relative;
+}
+
+.image-wrapper {
+    position: relative;
+    display: inline-block;
 }
 
 .main-image img {
-    max-width: 55%; /* madhësi e kontrolluar e fotos */
+    max-width: 55%;
     height: auto;
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    display: block;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+.main-image img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 123, 84, 0.1), rgba(255, 210, 107, 0.1));
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-wrapper:hover .image-overlay {
+    opacity: 1;
 }
 
 /* CAPTION */
@@ -175,6 +220,119 @@ body {
     font-weight: 500;
     font-style: italic;
     letter-spacing: 0.5px;
+}
+
+/* ---------------- QUICK FEATURES ---------------- */
+.quick-features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    padding: 0 2rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.feature-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 123, 84, 0.2);
+    background: white;
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+}
+
+.feature-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #444;
+}
+
+/* ---------------- FEATURED SECTION ---------------- */
+.featured-section {
+    padding: 3rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.featured-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #444;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.featured-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff7b54, #ffb26b);
+    border-radius: 2px;
+}
+
+.featured-events {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.featured-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.featured-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(255, 123, 84, 0.2);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.featured-card h3 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.card-date {
+    color: #ff7b54;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.card-location {
+    color: #666;
+    font-size: 0.9rem;
 }
 
 /* ---------------- RESPONSIVE DESIGN ---------------- */
@@ -210,6 +368,22 @@ body {
     .brand-name {
         font-size: 1.3rem;
     }
+
+    .quick-features {
+        gap: 1rem;
+    }
+
+    .feature-item {
+        padding: 0.6rem 1.2rem;
+    }
+
+    .featured-title {
+        font-size: 1.5rem;
+    }
+
+    .featured-events {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
@@ -232,5 +406,14 @@ body {
 
     .brand-name {
         font-size: 1.2rem;
+    }
+
+    .quick-features {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .featured-section {
+        padding: 2rem 1rem;
     }
 }
