@@ -1,0 +1,236 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    background: #fafafa;
+}
+
+.background-overlay {
+    min-height: 100vh;
+    background-image: url('images/background2.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+/* ---------------- TOP BAR ---------------- */
+.top-bar {
+    background: linear-gradient(to right, #fffdf5, #fefef0, #fffdf5);
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+}
+
+.top-bar-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.top-left,
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #8a8a8a;
+    font-size: 0.85rem;
+}
+
+/* BRAND NAME EFFECT */
+.top-center {
+    text-align: center;
+}
+
+.brand-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: transparent;
+    background: linear-gradient(90deg, #ff7b54, #ffb26b, #ffd56b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background-size: 200%;
+    animation: shine 6s linear infinite;
+}
+
+@keyframes shine {
+    0% { background-position: 0%; }
+    100% { background-position: 200%; }
+}
+
+.brand-name::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #ff7b54, #ffb26b, #ffd56b);
+    transition: width 0.4s ease;
+}
+
+.brand-name:hover::after {
+    width: 80%;
+}
+
+.brand-name:hover {
+    letter-spacing: 5px;
+    filter: drop-shadow(0 0 8px rgba(255, 180, 80, 0.7));
+}
+
+/* ICONS */
+.globe,
+.search-icon,
+.heart-icon,
+.cart-icon {
+    font-size: 1rem;
+}
+
+.heart-icon {
+    font-size: 1.1rem;
+    color: #8a8a8a;
+}
+
+/* ---------------- NAVIGATION BAR ---------------- */
+.navbar {
+    background: #fefef0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0.75rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #8a8a8a;
+    font-weight: 500;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.nav-link:hover {
+    color: #ff7b54;
+}
+
+.sign-in-top {
+    color: #8a8a8a;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+/* ---------------- IMAGE SECTION ---------------- */
+.main-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 0;
+}
+
+.main-image img {
+    max-width: 55%; /* madhësi e kontrolluar e fotos */
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* CAPTION */
+.caption {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #444;
+    margin-top: 1rem;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+/* ---------------- RESPONSIVE DESIGN ---------------- */
+@media (max-width: 768px) {
+    .top-bar-container,
+    .nav-container {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .top-center {
+        order: -1;
+    }
+
+    .nav-menu {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .nav-link {
+        font-size: 0.75rem;
+    }
+
+    .main-image img {
+        max-width: 70%;
+    }
+
+    .caption {
+        font-size: 1rem;
+    }
+
+    .brand-name {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .nav-link {
+        font-size: 0.7rem;
+    }
+
+    .main-image img {
+        max-width: 80%;
+    }
+
+    .caption {
+        font-size: 0.95rem;
+    }
+
+    .brand-name {
+        font-size: 1.2rem;
+    }
+}
