@@ -26,7 +26,7 @@ function initializeEventSystem() {
     closeModal.addEventListener('click', () => {
         modal.style.display = 'none';
         eventForm.reset();
-    });
+    });z
 
     cancelBtn.addEventListener('click', () => {
         modal.style.display = 'none';
