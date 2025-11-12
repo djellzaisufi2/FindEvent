@@ -661,10 +661,22 @@ body {
     margin-bottom: 1.5rem;
 }
 
+.signin-card .remember {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+
+.signin-card .remember label {
+    white-space: nowrap;
+}
+
+
 .signin-card .options a {
     color: #ff7b54;
     text-decoration: none;
 }
+
 
 .signin-card button {
     background: #ff7b54;
