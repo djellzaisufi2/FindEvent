@@ -671,6 +671,9 @@ body {
     white-space: nowrap;
 }
 
+.signin-card input[type="checkbox"] {
+  margin-top: 17px;
+}
 
 .signin-card .options a {
     color: #ff7b54;
