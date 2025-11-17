@@ -190,7 +190,7 @@ body {
 }
 
 @keyframes shine {
-    0% { background-position: 0; }
+    0% { background-position: 0%; }
     100% { background-position: 200%; }
 }
 
@@ -831,6 +831,127 @@ body {
 
     .featured-section {
         padding: 2rem 1rem;
+    }
+}
+
+
+/* ---------- Sign In section styles ---------- */
+
+.signin-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem 2rem; /* space below navbar */
+}
+
+.signin-card {
+    max-width: 400px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    animation: fadeInUp 0.5s ease;
+}
+
+.signin-card h1 {
+    font-size: 2rem;
+    color: #ff7b54;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.signin-card input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    outline: none;
+}
+
+.signin-card input:focus {
+    border-color: #ff7b54;
+}
+
+.signin-card .options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.signin-card .remember {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.signin-card .remember label {
+    white-space: nowrap;
+}
+
+.signin-card input[type="checkbox"] {
+  margin-top: 17px;
+}
+
+.signin-card .options a {
+    color: #ff7b54;
+    text-decoration: none;
+}
+
+
+.signin-card button {
+    background: #ff7b54;
+    color: #fff;
+    padding: 12px;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.signin-card button:hover {
+    background: #ff9f50;
+}
+
+.signin-card p {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.signin-card #signup {
+    color: #ff7b54;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .signin-card {
+        padding: 2rem 1.5rem;
+    }
+}
+@media (max-width: 480px) {
+    .signin-card {
+        padding: 1.5rem 1rem;
     }
 }
 
