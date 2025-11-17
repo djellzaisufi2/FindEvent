@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FindEvent - Local Events</title>
+    <title>Event Details - FindEvent</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="background-overlay home-background">
+    <div class="background-overlay">
         <!-- Top Bar -->
         <div class="top-bar">
             <div class="top-bar-container">
                 <div class="top-left">
                     <span class="globe">🌐</span>
-                    <span class="country">KOSOVO | EURO </span>
+                    <span class="country">KOSOVO | EURO</span>
+                    <span class="search-icon">🔍</span>
                 </div>
                 <div class="top-center">
                     <span class="brand-name">FIND EVENT</span>
                 </div>
                 <div class="top-right">
-                <a href="signIn.html"><span class="sign-in-top">Sign in</span></a>
+                    <a href="signIn.html"><span class="sign-in-top">Sign in</span></a>
                     <span class="heart-icon">♡</span>
                     <span class="cart-icon">🛒</span>
                 </div>
@@ -44,14 +45,19 @@
             </div>
         </nav>
 
-        <!-- Main Content -->
-        <main class="home-content">
-            <div class="home-message">
-                <h1 class="home-heading">FindEvent helps you find amazing local events in your city</h1>
+        <!-- Event Details Section -->
+        <section class="event-details-section">
+            <div class="event-details-container">
+                <a href="kids.html" class="back-link">← Back to Events</a>
+                <div class="event-details-card" id="eventDetailsCard">
+                    <!-- Event details will be loaded here -->
+                    <div class="loading">Loading event details...</div>
+                </div>
             </div>
-        </main>
-      
+        </section>
     </div>
     <script src="script.js"></script>
+    <script src="event-details.js"></script>
 </body>
 </html>
+
