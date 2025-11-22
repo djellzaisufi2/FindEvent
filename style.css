@@ -18,6 +18,29 @@ body {
     background-repeat: no-repeat;
 }
 
+/* Home page specific background */
+.home-background {
+    background-image: url('images/background.png');
+    background-size: cover;
+    background-position: center bottom;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(to bottom, rgba(245, 241, 232, 1), rgba(245, 241, 232, 0.8), transparent);
+    z-index: 0;
+    pointer-events: none;
+}
+
 /* Ensure background is behind menu */
 .top-bar,
 .navbar {
@@ -223,6 +246,35 @@ body {
 
 .sign-in-top:hover {
     color: #ff7b54;
+}
+
+/* ---------------- HOME CONTENT ---------------- */
+.home-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+    padding: 6rem 2rem 4rem 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.home-message {
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.home-heading {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: #000;
+    margin: 0;
+    line-height: 1.6;
+    letter-spacing: 1px;
+    font-style: italic;
+    font-family: 'Georgia', 'Times New Roman', serif;
 }
 
 /* ---------------- IMAGE SECTION ---------------- */
