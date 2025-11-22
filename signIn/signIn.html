@@ -49,28 +49,35 @@
 
         <!-- -------- SIGN-IN SECTION -------- -->
        
-            <div class="signin-section">
-                <div class="signin-card">
-                    <h1>Sign In</h1>
-                    <form action="#" method="post">
-                        <input type="text" id="username" name="username" required placeholder="Username">
-                        <input type="password" id="password" name="password" required placeholder="Password">
+            <div class="section">
+            <div class="container">
 
-                        <div class="options">
-                        <div class="remember">
-                            <label for="remember">Remember Me</label>
-                            <input type="checkbox" id="remember" name="remember">
+                <div class = "form-box login">
+                    <form action ="">
+                        <h1>Sign In</h1>
+                        <div class="input-box">
+                            <input type="text" placeholder="Username" required>
+                            <i class="bx bxs-user"></i>
                         </div>
-                        <a href="#">Forgot Password?</a>
+                        <div class="input-box">
+                            <input type="password" placeholder="Password" required>
+                            <i class="bx bxs-lock-alt"></i>
                         </div>
-
-
-                        <button type="submit">Sign In</button>
-
-                        <p>Don't have an account? <a href="signUp.html" id="signup">Sign Up</a></p>
+                        <div class="forgot-link">
+                            <a href="#">Forgot Password?</a>
+                        </div>
+                        <button type="submit" class="btn">Sign In</button>
+                        <p>or signin with social platoforms</p>
+                        <div class="social-icons">
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="google"><i class="bx bxl-google"></i></a>
+                            <a href="#" class="github"><i class="bx bxl-github"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
                     </form>
                 </div>
-            </div>
+
+
        
         
     </div>
