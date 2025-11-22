@@ -22,7 +22,7 @@
 
 .container{
     position: relative;
-    width: 400px;
+    width: 700px;
     height: 550px;
     background: #fff;
     border-radius: 30px;
@@ -51,7 +51,7 @@
     right: 50%;
 }
 .container.active .form-box.register{
-    visability: visible;
+    visibility: hidden;
 }
 form{
     width: 100%;
@@ -176,12 +176,14 @@ form{
 .toggle-box{
     position: absolute;
     width: 100%;
-    height: 100px;
+    height: 100%;
+    top: 0;
 }
 
 .toggle-box::before{
     content: '';
     left: -250%;
+    top: 0;            /* <-- added */
     border-radius: 150px;
     position: absolute;
     width: 300%;
@@ -215,9 +217,34 @@ form{
 
 }
 
+.container.active .toggle-panel.toggle-left{
+    left: -50%;
+    transition-delay: .6s;
+}
 
 
+.toggle-panel.toggle-right{
+    right: -50%;
+    transition-delay: .6s;
+}
 
+
+.container.active .toggle-panel.toggle-right{
+    right: 0;
+    transition-delay: 1.2s;
+}
+
+.toggle-panel p{
+    margin-bottom: 20px;
+}
+
+.toggle-panel .btn{
+    width: 160px;
+    height: 46px;
+    background: transparent;
+    border: 2px solid #fff;
+    box-shadow: none;
+}
 
 
 
