@@ -1,0 +1,206 @@
+/* ---------------- KIDS PAGE STYLES ---------------- */
+.kids-main-content {
+    position: relative;
+    min-height: calc(100vh - 200px);
+    padding: 1rem;
+}
+
+.kids-image {
+    position: fixed;
+    width: 220px;
+    height: auto;
+    opacity: 0;
+    mix-blend-mode: normal;
+    filter: brightness(1.1) contrast(1.05) saturate(0.9);
+    transition: opacity 0.8s ease, transform 0.3s ease;
+    border-radius: 15px;
+    z-index: 2;
+    pointer-events: none;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    animation: float 6s ease-in-out infinite;
+    transform-origin: center;
+}
+
+/* Fade-in animacioni */
+.kids-image-top-right {
+    top: 160px;
+    right: 40px;
+    transform: rotate(-8deg);
+    animation: float 5s ease-in-out infinite, fadeInUp 1s ease-out 0.3s forwards;
+}
+
+.kids-image-bottom-right {
+    bottom: 50px;
+    right: 50px;
+    transform: rotate(12deg);
+    animation: float 7s ease-in-out infinite 0.5s, fadeInUp 1s ease-out 0.6s forwards;
+}
+
+.kids-image-bottom-left {
+    bottom: 60px;
+    left: 40px;
+    transform: rotate(-12deg);
+    animation: float 6.5s ease-in-out infinite 0.3s, fadeInUp 1s ease-out 0.9s forwards;
+}
+
+.kids-image-top-left {
+    top: 160px;
+    left: 40px;
+    transform: rotate(10deg);
+    animation: float 6s ease-in-out infinite 0.2s, fadeInUp 1s ease-out 1.2s forwards;
+}
+
+/* Float animacioni - lëvizje e butë lart-poshtë */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(var(--rotation));
+    }
+    50% {
+        transform: translateY(-20px) rotate(var(--rotation));
+    }
+}
+
+.kids-image-top-right {
+    --rotation: -8deg;
+}
+
+.kids-image-bottom-right {
+    --rotation: 12deg;
+}
+
+.kids-image-bottom-left {
+    --rotation: -12deg;
+}
+
+.kids-image-top-left {
+    --rotation: 10deg;
+}
+
+/* Fade-in animacioni */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) rotate(var(--rotation));
+    }
+    to {
+        opacity: 0.85;
+        transform: translateY(0px) rotate(var(--rotation));
+    }
+}
+
+.kids-image:hover {
+    opacity: 0.95;
+    transform: scale(1.08) rotate(0deg) !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+    animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+    .kids-image {
+        width: 170px;
+    }
+
+    .kids-image-top-right {
+        top: 140px;
+        right: 20px;
+        transform: rotate(-6deg);
+        --rotation: -6deg;
+    }
+
+    .kids-image-bottom-right {
+        bottom: 40px;
+        right: 25px;
+        transform: rotate(8deg);
+        --rotation: 8deg;
+    }
+
+    .kids-image-bottom-left {
+        bottom: 45px;
+        left: 20px;
+        transform: rotate(-8deg);
+        --rotation: -8deg;
+    }
+
+    .kids-image-top-left {
+        top: 140px;
+        left: 20px;
+        transform: rotate(7deg);
+        --rotation: 7deg;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px) rotate(var(--rotation));
+        }
+        to {
+            opacity: 0.8;
+            transform: translateY(0px) rotate(var(--rotation));
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .kids-image {
+        width: 140px;
+    }
+
+    .kids-image-top-right {
+        top: 120px;
+        right: 15px;
+        transform: rotate(-5deg);
+        --rotation: -5deg;
+    }
+
+    .kids-image-bottom-right {
+        bottom: 30px;
+        right: 18px;
+        transform: rotate(6deg);
+        --rotation: 6deg;
+    }
+
+    .kids-image-bottom-left {
+        bottom: 35px;
+        left: 15px;
+        transform: rotate(-6deg);
+        --rotation: -6deg;
+    }
+
+    .kids-image-top-left {
+        top: 120px;
+        left: 15px;
+        transform: rotate(5deg);
+        --rotation: 5deg;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(15px) rotate(var(--rotation));
+        }
+        to {
+            opacity: 0.75;
+            transform: translateY(0px) rotate(var(--rotation));
+        }
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px) rotate(var(--rotation));
+        }
+        50% {
+            transform: translateY(-15px) rotate(var(--rotation));
+        }
+    }
+}
+
+/* Events Container */
+.kids-events-container {
+    position: relative;
+    z-index: 1;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    min-height: 250px;
+}

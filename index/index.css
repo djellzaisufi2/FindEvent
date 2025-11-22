@@ -1,0 +1,78 @@
+
+.home-background {
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-position: center bottom;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(to bottom, rgba(245, 241, 232, 1), rgba(245, 241, 232, 0.8), transparent);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.home-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+    padding: 6rem 2rem 4rem 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.home-message {
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.home-heading {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: #000;
+    margin: 0;
+    line-height: 1.6;
+    letter-spacing: 1px;
+    font-style: italic;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* HOME ILLUSTRATION */
+.home-illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.home-image {
+    max-width: 40%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    animation: fadeInUp 1s ease-out 0.4s both;
+    object-fit: contain;
+    object-position: center;
+}
+
+.home-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+
