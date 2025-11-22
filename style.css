@@ -1,4 +1,4 @@
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -104,13 +104,6 @@ body {
 }
 
 
-
-
-
-
-
-
-
 /* ---------------- CITY SEARCH ---------------- */
 .city-search-container {
     position: relative;
@@ -179,10 +172,6 @@ body {
     color: #8a8a8a;
 }
 
-
-
-
-
 /* ---------------- NAVIGATION BAR ---------------- */
 .navbar {
     background: #fefef0;
@@ -235,8 +224,6 @@ body {
 .sign-in-top:hover {
     color: #ff7b54;
 }
-
-
 
 /* ---------------- IMAGE SECTION ---------------- */
 .main-image {
@@ -379,7 +366,6 @@ body {
     font-weight: 600;
     color: #444;
 }
-
 
 /* ---------------- CITY EVENTS ---------------- */
 .city-events {
@@ -684,8 +670,7 @@ body {
 }
 
 
-
-/* ---------------- KIDS EVENTS SYSTEM ---------------- */
+/* ---------------- EVENTS SYSTEM ---------------- */
 .create-event-section-top {
     display: flex;
     justify-content: center;
