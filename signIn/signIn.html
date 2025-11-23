@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="signIn.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="signIn.js" defer></script>
 
 </head>
 
@@ -89,7 +90,6 @@
             <!-- Register Form -->
 
             <div class="form-box register">
-                <div class="form-box login">
                 <form action="">
                     <h1>Sign Up</h1>
                     <div class="input-box">
@@ -113,7 +113,7 @@
                         <a href="#" class="linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
                     </div>
                 </form>
-                </div>
+                
             </div>
 
             <!-- Toogle box -->
@@ -140,18 +140,6 @@
 
     </div>
 
-    <!-- JAVASCRIPT NEEDED FOR ANIMATION -->
-    <script>
-        const container = document.querySelector(".container");
-
-        document.querySelector(".register-btn").addEventListener("click", () => {
-            container.classList.add("active");
-        });
-
-        document.querySelector(".login-btn").addEventListener("click", () => {
-            container.classList.remove("active");
-        });
-    </script>
 
 </body>
 </html>
