@@ -11,7 +11,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(90deg, #f4e6c5, #dab058b9);
+    background: linear-gradient(to bottom, #fffdf5, #f5d246b6, #ffcd06aa);
 }
 
 .container{
