@@ -51,23 +51,47 @@
         <section class="cities-section">
             <div class="cities-container">
                 <h2 class="cities-title">Cities in Kosovo</h2>
-                <p class="cities-intro">Discover the beautiful cities of Kosovo and their unique characteristics</p>
+                <p class="cities-intro">Select a city to filter and discover events happening in that location</p>
                 
-                <div class="cities-grid">
-                    <!-- City cards will be added here -->
-                    <!-- Template for future city cards:
-                    <div class="city-card">
-                        <h3 class="city-name">City Name</h3>
-                        <div class="city-content">
-                            <p class="city-description">City characteristics and description will go here...</p>
-                        </div>
+                <!-- City Filter Section -->
+                <div class="city-filter-section">
+                    <div class="filter-controls">
+                        <button class="filter-btn active" data-city="all">All Cities</button>
+                        <button class="filter-btn" data-city="Prishtinë">Prishtinë</button>
+                        <button class="filter-btn" data-city="Mitrovicë">Mitrovicë</button>
+                        <button class="filter-btn" data-city="Pejë">Pejë</button>
+                        <button class="filter-btn" data-city="Prizren">Prizren</button>
+                        <button class="filter-btn" data-city="Gjakovë">Gjakovë</button>
+                        <button class="filter-btn" data-city="Gjilan">Gjilan</button>
+                        <button class="filter-btn" data-city="Ferizaj">Ferizaj</button>
+                        <button class="filter-btn" data-city="Rahovec">Rahovec</button>
+                        <button class="filter-btn" data-city="Suharekë">Suharekë</button>
+                        <button class="filter-btn" data-city="Lipjan">Lipjan</button>
+                        <button class="filter-btn" data-city="Podujevë">Podujevë</button>
+                        <button class="filter-btn" data-city="Vushtrri">Vushtrri</button>
+                        <button class="filter-btn" data-city="Skenderaj">Skenderaj</button>
+                        <button class="filter-btn" data-city="Malishevë">Malishevë</button>
+                        <button class="filter-btn" data-city="Deçan">Deçan</button>
                     </div>
-                    -->
+                </div>
+
+                <!-- Cities Grid -->
+                <div class="cities-grid" id="citiesGrid">
+                    <!-- City cards will be dynamically generated -->
+                </div>
+
+                <!-- Events Section (shown when a city is selected) -->
+                <div class="city-events-section" id="cityEventsSection" style="display: none;">
+                    <h3 class="city-events-title" id="cityEventsTitle"></h3>
+                    <div class="events-grid" id="cityEventsGrid">
+                        <!-- Events will be displayed here -->
+                    </div>
                 </div>
             </div>
         </section>
     </div>
     <script src="../script.js"></script>
+    <script src="cities.js"></script>
 </body>
 </html>
 
