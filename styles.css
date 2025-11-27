@@ -88,16 +88,15 @@ body {
 }
 
 .bakery-background {
-    background-image:
-        linear-gradient(140deg, rgba(39, 20, 0, 0.75), rgba(138, 73, 20, 0.45)),
-        url('images/background2.png');
+    background-image: url('images/bakery.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    opacity: 0.75;
+    opacity: 0.8;
     transition: opacity 0.5s ease;
     position: relative;
+    overflow: hidden;
 }
 
 /* Sports Main Content */
