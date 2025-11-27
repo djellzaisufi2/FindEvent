@@ -7,7 +7,113 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="background-overlay"></div>
+    <div class="background-overlay bakery-background">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="top-bar-container">
+                <div class="top-left">
+                    <span class="globe">🌐</span>
+                    <span class="country">KOSOVO | EURO</span>
+                    <span class="search-icon">🔍</span>
+                </div>
+                <div class="top-center">
+                    <span class="brand-name">FIND EVENT</span>
+                </div>
+                <div class="top-right">
+                    <a style="text-decoration: none;" href="signIn.html"><span class="sign-in-top">Sign in</span></a>
+                    <span class="heart-icon">♡</span>
+                    <span class="cart-icon">🛒</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">HOME</a></li>
+                    <li><a href="whatsnew.html" class="nav-link">ABOUT US</a></li>
+                    <li><a href="kids.html" class="nav-link">KIDS</a></li>
+                    <li><a href="music.html" class="nav-link">MUSIC</a></li>
+                    <li><a href="sports.html" class="nav-link">SPORTS</a></li>
+                    <li><a href="art.html" class="nav-link">ART</a></li>
+                    <li><a href="bakery.html" class="nav-link">BAKERY</a></li>
+                    <li><a href="reading.html" class="nav-link">READING</a></li>
+                    <li><a href="read.html" class="nav-link">READ</a></li>
+                    <li><a href="cities.html" class="nav-link">CITIES</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="bakery-main-content">
+            <div class="bakery-events-container">
+                <div class="create-event-section-top">
+                    <button class="create-event-btn" id="createEventBtn">+ Share a Bakery Event</button>
+                </div>
+
+                <div class="events-grid" id="eventsGrid">
+                    <!-- Events will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Event Creation Form Modal -->
+            <div class="event-form-modal" id="eventFormModal">
+                <div class="event-form-container">
+                    <span class="close-modal" id="closeModal">&times;</span>
+                    <h2 class="form-title">Create Bakery Event</h2>
+                    <form id="eventForm" class="event-form">
+                        <div class="form-group">
+                            <label for="eventTitle">Event Title *</label>
+                            <input type="text" id="eventTitle" name="title" required placeholder="Enter event title">
+                        </div>
+                        <div class="form-group">
+                            <label for="organizerName">Organizer Name *</label>
+                            <input type="text" id="organizerName" name="organizer" required placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDate">Event Date *</label>
+                            <input type="date" id="eventDate" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventTime">Event Time *</label>
+                            <input type="time" id="eventTime" name="time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventLocation">Location *</label>
+                            <input type="text" id="eventLocation" name="location" required placeholder="Enter event location">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDescription">Description *</label>
+                            <textarea id="eventDescription" name="description" rows="5" required placeholder="Describe your event..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventPrice">Price (EUR)</label>
+                            <input type="number" id="eventPrice" name="price" min="0" step="0.01" placeholder="0.00">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventCapacity">Capacity (Max participants)</label>
+                            <input type="number" id="eventCapacity" name="capacity" min="1" placeholder="Unlimited">
+                        </div>
+                        <div class="form-group">
+                            <label for="organizerEmail">Contact Email *</label>
+                            <input type="email" id="organizerEmail" name="email" required placeholder="your.email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="organizerPhone">Contact Phone</label>
+                            <input type="tel" id="organizerPhone" name="phone" placeholder="+383 XX XXX XXX">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-cancel" id="cancelBtn">Cancel</button>
+                            <button type="submit" class="btn-submit">Create Event</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+    <script src="bakery-events.js"></script>
 </body>
 </html>
 
