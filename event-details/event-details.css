@@ -205,6 +205,168 @@
     margin-bottom: 2rem;
 }
 
+.city-events-header {
+    text-align: center;
+    padding: 2rem 2rem 3rem 2rem;
+    border-bottom: 3px solid rgba(255, 123, 84, 0.1);
+    margin-bottom: 2rem;
+}
+
+.city-events-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ff7b54;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #ff7b54, #ffb26b, #ffd56b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.city-events-count {
+    font-size: 1.1rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.city-events-subtitle {
+    font-size: 1.3rem;
+    color: #666;
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.city-events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.city-event-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 123, 84, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.city-event-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff7b54, #ffb26b, #ffd56b);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+}
+
+.city-event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 123, 84, 0.2);
+    border-color: rgba(255, 123, 84, 0.3);
+}
+
+.city-event-card:hover::before {
+    transform: scaleX(1);
+}
+
+.city-event-card-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(255, 123, 84, 0.1);
+}
+
+.city-event-card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+}
+
+.city-event-category {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff7b54, #ffb26b);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.city-event-card-body {
+    margin-bottom: 1.5rem;
+}
+
+.city-event-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.city-event-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.city-event-card-footer {
+    padding-top: 1.5rem;
+    border-top: 2px solid rgba(255, 123, 84, 0.1);
+}
+
+.city-event-description {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.city-event-card-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.view-city-event-btn {
+    flex: 1;
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, #ff7b54, #ffb26b);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 123, 84, 0.3);
+}
+
+.view-city-event-btn:hover {
+    background: linear-gradient(135deg, #ff6b40, #ff9f50);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 123, 84, 0.4);
+}
+
+.view-city-event-btn:active {
+    transform: translateY(0);
+}
+
 /* Notifications */
 .notification {
     position: fixed;
@@ -323,6 +485,44 @@
 
     .section-title {
         font-size: 1.2rem;
+    }
+
+    .city-events-header {
+        padding: 1.5rem 1rem 2rem 1rem;
+    }
+
+    .city-events-title {
+        font-size: 1.5rem;
+    }
+
+    .city-events-count {
+        font-size: 1rem;
+    }
+
+    .city-events-subtitle {
+        font-size: 1rem;
+    }
+
+    .city-events-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .city-event-card {
+        padding: 1.2rem;
+    }
+
+    .city-event-card-title {
+        font-size: 1.1rem;
+    }
+
+    .city-event-info {
+        font-size: 0.9rem;
+    }
+
+    .view-city-event-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
     }
 }
 

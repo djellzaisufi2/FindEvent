@@ -1,7 +1,196 @@
 // Event Details Page
 document.addEventListener('DOMContentLoaded', function() {
-    loadEventDetails();
+    // Check if city parameter exists
+    const urlParams = new URLSearchParams(window.location.search);
+    const city = urlParams.get('city');
+    
+    if (city) {
+        // Display city events message
+        displayCityEvents(city);
+    } else {
+        // Load event details by ID (existing functionality)
+        loadEventDetails();
+    }
 });
+
+function displayCityEvents(city) {
+    const detailsCard = document.getElementById('eventDetailsCard');
+    
+    // Show loading state
+    detailsCard.innerHTML = `
+        <div class="city-events-header">
+            <h1 class="city-events-title">Eventet për qytetin: ${escapeHtml(city)}</h1>
+            <div class="loading">Duke ngarkuar eventet...</div>
+        </div>
+    `;
+    
+    // Load events from server and localStorage
+    loadCityEvents(city);
+}
+
+function loadCityEvents(city) {
+    const allEvents = [];
+    
+    // Try to load from server first
+    loadEventsFromServer()
+        .then(serverEvents => {
+            if (serverEvents && Array.isArray(serverEvents)) {
+                allEvents.push(...serverEvents);
+            }
+            
+            // Also load from localStorage (all categories)
+            const categories = ['kidsEvents', 'sportsEvents', 'musicEvents'];
+            categories.forEach(category => {
+                const localEvents = JSON.parse(localStorage.getItem(category) || '[]');
+                if (Array.isArray(localEvents)) {
+                    allEvents.push(...localEvents);
+                }
+            });
+            
+            // Filter events by city (case-insensitive)
+            const cityEvents = allEvents.filter(event => {
+                if (!event.location) return false;
+                const location = event.location.toLowerCase().trim();
+                const cityLower = city.toLowerCase().trim();
+                // Check if location contains the city name or matches exactly
+                return location === cityLower || 
+                       location.includes(cityLower) || 
+                       cityLower.includes(location) ||
+                       location.startsWith(cityLower) ||
+                       location.endsWith(cityLower);
+            });
+            
+            // Display filtered events
+            displayCityEventsList(city, cityEvents);
+        })
+        .catch(error => {
+            console.log('Server load failed, using localStorage only:', error);
+            
+            // Fallback to localStorage only
+            const categories = ['kidsEvents', 'sportsEvents', 'musicEvents'];
+            const allEvents = [];
+            
+            categories.forEach(category => {
+                const localEvents = JSON.parse(localStorage.getItem(category) || '[]');
+                if (Array.isArray(localEvents)) {
+                    allEvents.push(...localEvents);
+                }
+            });
+            
+            // Filter events by city
+            const cityEvents = allEvents.filter(event => {
+                if (!event.location) return false;
+                const location = event.location.toLowerCase().trim();
+                const cityLower = city.toLowerCase().trim();
+                // Check if location contains the city name or matches exactly
+                return location === cityLower || 
+                       location.includes(cityLower) || 
+                       cityLower.includes(location) ||
+                       location.startsWith(cityLower) ||
+                       location.endsWith(cityLower);
+            });
+            
+            // Display filtered events
+            displayCityEventsList(city, cityEvents);
+        });
+}
+
+function loadEventsFromServer() {
+    return fetch('../api/get-events.php')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load events');
+            }
+            return response.json();
+        })
+        .catch(error => {
+            console.log('Error loading from server:', error);
+            throw error;
+        });
+}
+
+function displayCityEventsList(city, events) {
+    const detailsCard = document.getElementById('eventDetailsCard');
+    
+    if (events.length === 0) {
+        detailsCard.innerHTML = `
+            <div class="city-events-header">
+                <h1 class="city-events-title">Eventet për qytetin: ${escapeHtml(city)}</h1>
+                <p class="city-events-subtitle">(ende s'ka evente të shtuar)</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // Sort events by date (earliest first)
+    events.sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    // Get category icon
+    function getCategoryIcon(category) {
+        const icons = {
+            'kids': '👶',
+            'sports': '⚽',
+            'music': '🎵',
+            'art': '🎨',
+            'bakery': '🍰',
+            'reading': '📚'
+        };
+        return icons[category] || '📅';
+    }
+    
+    detailsCard.innerHTML = `
+        <div class="city-events-header">
+            <h1 class="city-events-title">Eventet për qytetin: ${escapeHtml(city)}</h1>
+            <p class="city-events-count">Gjithsej ${events.length} ${events.length === 1 ? 'event' : 'evente'}</p>
+        </div>
+        <div class="city-events-grid">
+            ${events.map(event => `
+                <div class="city-event-card" data-event-id="${event.id}">
+                    <div class="city-event-card-header">
+                        <h3 class="city-event-card-title">${escapeHtml(event.title)}</h3>
+                        <span class="city-event-category">${getCategoryIcon(event.category || 'kids')} ${event.category || 'Event'}</span>
+                    </div>
+                    <div class="city-event-card-body">
+                        <div class="city-event-info">
+                            <span class="city-event-icon">📅</span>
+                            <span>${formatDate(event.date)} në ${formatTime(event.time)}</span>
+                        </div>
+                        <div class="city-event-info">
+                            <span class="city-event-icon">📍</span>
+                            <span>${escapeHtml(event.location)}</span>
+                        </div>
+                        <div class="city-event-info">
+                            <span class="city-event-icon">👤</span>
+                            <span>Organizuar nga ${escapeHtml(event.organizer)}</span>
+                        </div>
+                        ${event.price > 0 ? `
+                        <div class="city-event-info">
+                            <span class="city-event-icon">💶</span>
+                            <span>${event.price.toFixed(2)} EUR</span>
+                        </div>
+                        ` : '<div class="city-event-info"><span class="city-event-icon">🆓</span><span>Falas</span></div>'}
+                        ${event.capacity ? `
+                        <div class="city-event-info">
+                            <span class="city-event-icon">👥</span>
+                            <span>Maksimumi ${event.capacity} pjesëmarrës</span>
+                        </div>
+                        ` : ''}
+                    </div>
+                    <div class="city-event-card-footer">
+                        <p class="city-event-description">${escapeHtml(event.description.substring(0, 120))}${event.description.length > 120 ? '...' : ''}</p>
+                        <div class="city-event-card-actions">
+                            <button class="view-city-event-btn" onclick="viewEventDetails('${event.id}')">Shiko Detajet</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+function viewEventDetails(eventId) {
+    window.location.href = `event-details.html?id=${eventId}`;
+}
 
 function loadEventDetails() {
     // Get event ID from URL
