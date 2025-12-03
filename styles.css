@@ -75,30 +75,6 @@ body {
     transition: opacity 0.5s ease;
 }
 
-.art-background {
-    background-image: url('images/1000027762.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    opacity: 0.8;
-    transition: opacity 0.5s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.bakery-background {
-    background-image: url('images/bakery.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    opacity: 0.8;
-    transition: opacity 0.5s ease;
-    position: relative;
-    overflow: hidden;
-}
-
 /* Sports Main Content */
 .sports-main-content {
     position: relative;
@@ -133,38 +109,12 @@ body {
     min-height: 250px;
 }
 
-.art-main-content,
-.bakery-main-content {
-    position: relative;
-    min-height: calc(100vh - 200px);
-    padding: 1rem;
-    z-index: 2;
-}
-.art-events-container,
-.bakery-events-container {
-    position: relative;
-    z-index: 1;
-    padding: 1.5rem;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    min-height: 250px;
-}
-
 /* When events exist, make background less visible */
 .sports-background.has-events {
     opacity: 0.25;
 }
 
 .music-background.has-events {
-    opacity: 0.25;
-}
-
-.art-background.has-events {
-    opacity: 0.25;
-}
-
-.bakery-background.has-events {
     opacity: 0.25;
 }
 
@@ -191,6 +141,7 @@ body {
     background: rgba(255, 255, 255, 1);
     box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
 }
+
 /* ---------------- TOP BAR ---------------- */
 .top-bar {
     background: linear-gradient(to right, #fffdf5, #fefef0, #fffdf5);
