@@ -2136,6 +2136,47 @@ body {
     transition: all 0.3s ease;
 }
 
+.signin-card button:hover {
+    background: #ff9f50;
+}
+
+.signin-card p {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.signin-card #signup {
+    color: #ff7b54;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .signin-card {
+        padding: 2rem 1.5rem;
+    }
+}
+@media (max-width: 480px) {
+    .signin-card {
+        padding: 1.5rem 1rem;
+    }
+}
+
+
+
+
 .delete-event-btn:hover {
     background: #d32f2f;
     transform: translateY(-2px);
