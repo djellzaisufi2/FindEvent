@@ -32,7 +32,6 @@
             <div class="nav-container">
                 <ul class="nav-menu">
                     <li><a href="../index/index.html" class="nav-link">HOME</a></li>
-                    <li><a href="../whatsnew/whatsnew.html" class="nav-link">ABOUT US</a></li>
                     <li><a href="../kids/kids.html" class="nav-link">KIDS</a></li>
                     <li><a href="../music/music.html" class="nav-link">MUSIC</a></li>
                     <li><a href="../sports/sports.html" class="nav-link">SPORTS</a></li>
@@ -40,18 +39,60 @@
                     <li><a href="../bakery/bakery.html" class="nav-link">BAKERY</a></li>
                     <li><a href="../reading/reading.html" class="nav-link">READING</a></li>
                     <li><a href="../cities/cities.html" class="nav-link">CITIES</a></li>
+                    <li><a href="../whatsnew/whatsnew.html" class="nav-link">ABOUT US</a></li>
                 </ul>
             </div>
         </nav>
 
-        <!-- Main Content -->
-        <main class="home-content">
-            <div class="home-message">
-                <h1 class="home-heading">FindEvent helps you find amazing local events in your city</h1>
+        <!-- Hero Slideshow Section -->
+        <section class="hero-slideshow">
+            <div class="slideshow-container">
+                <div class="slide active">
+                    <img src="../images/running.webp" alt="Running Events">
+                </div>
+                <div class="slide">
+                    <img src="../images/gjakovaevent.webp" alt="Gjakova Events">
+                </div>
+                <div class="slide">
+                    <img src="../images/prizren events.webp" alt="Prizren Events">
+                </div>
             </div>
+            <!-- Navigation Arrows -->
+            <button class="slideshow-nav slideshow-prev" aria-label="Previous slide">‹</button>
+            <button class="slideshow-nav slideshow-next" aria-label="Next slide">›</button>
+            <!-- Slide Indicators -->
+            <div class="slide-indicators">
+                <span class="indicator active" data-slide="0"></span>
+                <span class="indicator" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+            </div>
+            <div class="hero-overlay">
+                <div class="hero-content">
+                    <h1 class="hero-title"></h1>
+                </div>
+            </div>
+            <!-- Explore Events Button at bottom of slideshow -->
+            <div class="slideshow-cta">
+                <a href="#events" class="btn-primary">Explore Events</a>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Events Section -->
+            <section id="events" class="events-section">
+                <div class="container">
+                    <h2 class="section-title">Upcoming Events</h2>
+                    <div id="eventsGrid" class="events-grid">
+                        <!-- Events will be loaded here -->
+                    </div>
+                </div>
+            </section>
         </main>
       
     </div>
     <script src="../script.js"></script>
+    <script src="../slideshow.js"></script>
+    <script src="../home-events.js"></script>
 </body>
 </html>
