@@ -3,6 +3,6 @@ The FindEvent App is a community-driven platform that allows users to discover, 
 
 Team Members:
 Djellza Isufi,
-Erjona Shala,
 Elma Luta,
+Erjona Shala,
 Arbenita Kodraliu.

@@ -1,0 +1,44 @@
+/* ---------------- KIDS PAGE STYLES ---------------- */
+
+
+.kids-main-content {
+    position: relative;
+    min-height: calc(100vh - 200px);
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, rgba(255, 123, 84, 0.05) 0%, rgba(255, 210, 107, 0.05) 100%);
+}
+
+.kids-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+}
+
+.kids-page-title {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #ff7b54, #ffb26b, #ffd56b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0 0 1rem 0;
+    letter-spacing: 2px;
+}
+
+.kids-page-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Events Container */
+.kids-events-container {
+    position: relative;
+    z-index: 1;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 250px;
+}

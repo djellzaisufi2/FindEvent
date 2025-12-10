@@ -1,0 +1,36 @@
+[1mdiff --git a/index.html b/index.html[m
+[1mindex 68c8b45..fdb9882 100644[m
+[1m--- a/index.html[m
+[1m+++ b/index.html[m
+[36m@@ -44,15 +44,28 @@[m
+             </div>[m
+         </nav>[m
+ [m
+[32m+[m[32m        <!-- Hero Section -->[m
+[32m+[m[32m        <section class="hero-section">[m
+[32m+[m[32m            <div class="hero-content">[m
+[32m+[m[32m                <h1 class="hero-title">FindEvent</h1>[m
+[32m+[m[32m                <p class="hero-subtitle">Discover amazing local events in your city</p>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m        </section>[m
+[32m+[m
+         <!-- Main Content -->[m
+         <main class="home-content">[m
+[31m-            <div class="home-message">[m
+[31m-                <h1 class="home-heading">FindEvent helps you find amazing local events in your city</h1>[m
+[31m-            </div>[m
+[32m+[m[32m            <!-- Featured Events Section -->[m
+[32m+[m[32m            <section class="events-section">[m
+[32m+[m[32m                <h2 class="section-title">Featured Events</h2>[m
+[32m+[m[32m                <div id="eventsGrid" class="events-grid">[m
+[32m+[m[32m                    <!-- Events will be loaded here -->[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </section>[m
+         </main>[m
+       [m
+     </div>[m
+     <script src="script.js"></script>[m
+[32m+[m[32m    <script src="home-events.js"></script>[m
+ </body>[m
+ </html>[m
+ [m

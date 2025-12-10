@@ -1,0 +1,54 @@
+
+
+/* Sports Background */
+.sports-background {
+    background-image: url('../images/sport.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+    transition: opacity 0.5s ease;
+}
+
+
+
+/* Sports Main Content */
+.sports-main-content {
+    position: relative;
+    min-height: calc(100vh - 200px);
+    padding: 1rem;
+}
+
+.sports-events-container {
+    position: relative;
+    z-index: 1;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    min-height: 250px;
+}
+
+
+
+/* When events exist, make background less visible */
+.sports-background.has-events {
+    opacity: 0.25;
+}
+
+
+
+/* Make event cards more visible on sports background */
+.sports-events-container .event-card {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.sports-events-container .event-card:hover {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+}
+
+
