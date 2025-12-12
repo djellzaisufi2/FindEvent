@@ -207,7 +207,7 @@ function loadEventDetails() {
         .then(event => {
             if (!event) {
                 // Fallback to localStorage - check all categories
-                const categories = ['kidsEvents', 'sportsEvents', 'musicEvents'];
+                const categories = ['kidsEvents', 'sportsEvents', 'musicEvents', 'readingEvents'];
                 for (const category of categories) {
                     const events = JSON.parse(localStorage.getItem(category) || '[]');
                     event = events.find(e => e.id === eventId);
@@ -226,7 +226,7 @@ function loadEventDetails() {
         .catch(error => {
             console.log('Server load failed, using localStorage:', error);
             // Check all categories in localStorage
-            const categories = ['kidsEvents', 'sportsEvents', 'musicEvents'];
+            const categories = ['kidsEvents', 'sportsEvents', 'musicEvents', 'readingEvents'];
             let event = null;
             for (const category of categories) {
                 const events = JSON.parse(localStorage.getItem(category) || '[]');

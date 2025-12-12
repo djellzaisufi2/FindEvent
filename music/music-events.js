@@ -145,8 +145,6 @@ function loadEvents() {
                 }
             }
             displayEvents(events);
-            // Update background opacity when events are loaded
-            updateBackgroundOpacity(events.length);
         })
         .catch(error => {
             console.log('Server load failed, using localStorage:', error);
@@ -175,23 +173,9 @@ function loadEvents() {
             }
             
             displayEvents(events);
-            updateBackgroundOpacity(events.length);
         });
 }
 
-// Update background opacity based on number of events
-function updateBackgroundOpacity(eventCount) {
-    const background = document.querySelector('.music-background');
-    if (background) {
-        if (eventCount > 0) {
-            background.style.opacity = '0.25';
-            background.classList.add('has-events');
-        } else {
-            background.style.opacity = '0.6';
-            background.classList.remove('has-events');
-        }
-    }
-}
 
 // Load events from PHP backend
 function loadEventsFromServer() {

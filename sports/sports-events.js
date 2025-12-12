@@ -123,30 +123,14 @@ function loadEvents() {
                 events = JSON.parse(localStorage.getItem('sportsEvents') || '[]');
             }
             displayEvents(events);
-            // Update background opacity when events are loaded
-            updateBackgroundOpacity(events.length);
         })
         .catch(error => {
             console.log('Server load failed, using localStorage:', error);
             const events = JSON.parse(localStorage.getItem('sportsEvents') || '[]');
             displayEvents(events);
-            updateBackgroundOpacity(events.length);
         });
 }
 
-// Update background opacity based on number of events
-function updateBackgroundOpacity(eventCount) {
-    const background = document.querySelector('.sports-background');
-    if (background) {
-        if (eventCount > 0) {
-            background.style.opacity = '0.25';
-            background.classList.add('has-events');
-        } else {
-            background.style.opacity = '0.6';
-            background.classList.remove('has-events');
-        }
-    }
-}
 
 // Load events from PHP backend
 function loadEventsFromServer() {
