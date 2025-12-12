@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Details - FindEvent</title>
-    <link rel="stylesheet" href="event-details.css">
+    <title>My Favorites - FindEvent</title>
+    <link rel="stylesheet" href="favorites.css">
     <link rel="stylesheet" href="../style.css">
-
 </head>
 <body>
     <div class="background-overlay">
@@ -22,9 +21,9 @@
                     <span class="brand-name">FIND EVENT</span>
                 </div>
                 <div class="top-right">
-                    <a style="text-decoration: none;"  href="../signIn/signIn.html"><span class="sign-in-top">Sign in</span></a>
-                    <a href="../favorites/favorites.html" style="text-decoration: none;"><span class="heart-icon">♡</span></a>
-                    <span class="cart-icon">🛒</span>
+                    <a style="text-decoration: none;" href="../signIn/signIn.html"><span class="sign-in-top">Sign in</span></a>
+                    <a href="favorites.html" style="text-decoration: none;"><span class="heart-icon">❤️</span></a>
+                    <a href="../reservations/reservations.html" style="text-decoration: none;"><span class="cart-icon">🛒</span></a>
                 </div>
             </div>
         </div>
@@ -42,22 +41,23 @@
                     <li><a href="../bakery/bakery.html" class="nav-link">BAKERY</a></li>
                     <li><a href="../reading/reading.html" class="nav-link">READING</a></li>
                     <li><a href="../cities/cities.html" class="nav-link">CITIES</a></li>
+                    <li><a href="favorites.html" class="nav-link">FAVORITES</a></li>
                 </ul>
             </div>
         </nav>
 
-        <!-- Event Details Section -->
-        <section class="event-details-section">
-            <div class="event-details-container">
-                <div class="event-details-card" id="eventDetailsCard">
-                    <!-- Event details or city events will be loaded here -->
-                    <div class="loading">Loading...</div>
+        <!-- Favorites Section -->
+        <main class="favorites-main-content">
+            <div class="favorites-container">
+                <h1 class="favorites-page-title">My Favorite Events</h1>
+                <div id="favoritesGrid" class="events-grid">
+                    <!-- Favorite events will be loaded here -->
                 </div>
             </div>
-        </section>
+        </main>
     </div>
     <script src="../script.js"></script>
-    <script src="event-details.js"></script>
+    <script src="favorites.js"></script>
 </body>
 </html>
 
