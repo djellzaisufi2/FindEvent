@@ -206,9 +206,13 @@ function loadEventDetails() {
     loadEventFromServer(eventId)
         .then(event => {
             if (!event) {
-                // Fallback to localStorage
-                const events = JSON.parse(localStorage.getItem('kidsEvents') || '[]');
-                event = events.find(e => e.id === eventId);
+                // Fallback to localStorage - check all categories
+                const categories = ['kidsEvents', 'sportsEvents', 'musicEvents'];
+                for (const category of categories) {
+                    const events = JSON.parse(localStorage.getItem(category) || '[]');
+                    event = events.find(e => e.id === eventId);
+                    if (event) break;
+                }
             }
             
             if (!event) {
@@ -221,8 +225,14 @@ function loadEventDetails() {
         })
         .catch(error => {
             console.log('Server load failed, using localStorage:', error);
-            const events = JSON.parse(localStorage.getItem('kidsEvents') || '[]');
-            const event = events.find(e => e.id === eventId);
+            // Check all categories in localStorage
+            const categories = ['kidsEvents', 'sportsEvents', 'musicEvents'];
+            let event = null;
+            for (const category of categories) {
+                const events = JSON.parse(localStorage.getItem(category) || '[]');
+                event = events.find(e => e.id === eventId);
+                if (event) break;
+            }
             
             if (!event) {
                 showError('Event not found');
@@ -247,86 +257,150 @@ function loadEventFromServer(eventId) {
 function displayEventDetails(event) {
     const detailsCard = document.getElementById('eventDetailsCard');
     
+    // Get category info
+    const categoryInfo = getCategoryInfo(event.category || 'music');
+    
+    // Get event image
+    const eventImage = event.image || event.imageUrl || '../images/gjakovamusicevent.jpg';
+    const imageHtml = eventImage ? 
+        `<div class="event-details-image">
+            <img src="${escapeHtml(eventImage)}" alt="${escapeHtml(event.title)}" class="event-img">
+        </div>` : '';
+    
+    // Determine back link based on category
+    const backLink = event.category === 'music' ? '../music/music.html' : '../cities/cities.html';
+    const backLinkText = event.category === 'music' ? '← Back to Music Events' : '← Kthehu te Qytetet';
+    
     detailsCard.innerHTML = `
         <div class="event-details-header">
             <h1 class="event-details-title">${escapeHtml(event.title)}</h1>
-            <span class="event-details-category">👶 Kids Event</span>
+            <span class="event-details-category">${categoryInfo.icon} ${categoryInfo.name}</span>
         </div>
-        
-        <div class="event-details-body">
-            <div class="event-details-section">
-                <h2 class="section-title">Event Information</h2>
-                <div class="event-detail-item">
-                    <span class="detail-icon">📅</span>
-                    <div class="detail-content">
-                        <span class="detail-label">Date & Time</span>
-                        <span class="detail-value">${formatDate(event.date)} at ${formatTime(event.time)}</span>
-                    </div>
+        ${imageHtml}
+        <div class="event-content-grid">
+            <div class="event-left-column">
+                <div class="event-details-section">
+                    <h2 class="section-title">Description</h2>
+                    <p class="event-description-full">${escapeHtml(event.description)}</p>
                 </div>
-                <div class="event-detail-item">
-                    <span class="detail-icon">📍</span>
-                    <div class="detail-content">
-                        <span class="detail-label">Location</span>
-                        <span class="detail-value">${escapeHtml(event.location)}</span>
-                    </div>
-                </div>
-                <div class="event-detail-item">
-                    <span class="detail-icon">💶</span>
-                    <div class="detail-content">
-                        <span class="detail-label">Price</span>
-                        <span class="detail-value">${event.price > 0 ? `${event.price.toFixed(2)} EUR` : 'Free'}</span>
-                    </div>
-                </div>
-                ${event.capacity ? `
-                <div class="event-detail-item">
-                    <span class="detail-icon">👥</span>
-                    <div class="detail-content">
-                        <span class="detail-label">Capacity</span>
-                        <span class="detail-value">${event.capacity} participants</span>
-                    </div>
-                </div>
-                ` : ''}
             </div>
-
-            <div class="event-details-section">
-                <h2 class="section-title">Description</h2>
-                <p class="event-description-full">${escapeHtml(event.description)}</p>
-            </div>
-
-            <div class="event-details-section">
-                <h2 class="section-title">Organizer Information</h2>
-                <div class="event-detail-item">
-                    <span class="detail-icon">👤</span>
-                    <div class="detail-content">
-                        <span class="detail-label">Organizer</span>
-                        <span class="detail-value">${escapeHtml(event.organizer)}</span>
+            <div class="event-right-column">
+                <div class="event-details-section">
+                    <h2 class="section-title">Event Information</h2>
+                    <div class="event-detail-item">
+                        <span class="detail-icon">📅</span>
+                        <div class="detail-content">
+                            <span class="detail-label">Date & Time</span>
+                            <span class="detail-value">${formatDate(event.date)} at ${formatTime(event.time)}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="event-detail-item">
-                    <span class="detail-icon">📧</span>
-                    <div class="detail-content">
-                        <span class="detail-label">Email</span>
-                        <a href="mailto:${escapeHtml(event.email)}" class="detail-link">${escapeHtml(event.email)}</a>
+                    <div class="event-detail-item">
+                        <span class="detail-icon">📍</span>
+                        <div class="detail-content">
+                            <span class="detail-label">Location</span>
+                            <span class="detail-value">${escapeHtml(event.location)}</span>
+                        </div>
                     </div>
-                </div>
-                ${event.phone ? `
-                <div class="event-detail-item">
-                    <span class="detail-icon">📞</span>
-                    <div class="detail-content">
-                        <span class="detail-label">Phone</span>
-                        <a href="tel:${escapeHtml(event.phone)}" class="detail-link">${escapeHtml(event.phone)}</a>
+                    <div class="event-detail-item">
+                        <span class="detail-icon">💶</span>
+                        <div class="detail-content">
+                            <span class="detail-label">Price</span>
+                            <span class="detail-value">${event.price > 0 ? `${event.price.toFixed(2)} EUR` : 'Free'}</span>
+                        </div>
                     </div>
+                    ${event.capacity ? `
+                    <div class="event-detail-item">
+                        <span class="detail-icon">👥</span>
+                        <div class="detail-content">
+                            <span class="detail-label">Capacity</span>
+                            <span class="detail-value">${event.capacity} participants</span>
+                        </div>
+                    </div>
+                    ` : ''}
                 </div>
-                ` : ''}
+                <div class="event-details-section">
+                    <h2 class="section-title">Organizer Information</h2>
+                    <div class="event-detail-item">
+                        <span class="detail-icon">👤</span>
+                        <div class="detail-content">
+                            <span class="detail-label">Organizer</span>
+                            <span class="detail-value">${escapeHtml(event.organizer)}</span>
+                        </div>
+                    </div>
+                    <div class="event-detail-item">
+                        <span class="detail-icon">📧</span>
+                        <div class="detail-content">
+                            <span class="detail-label">Email</span>
+                            <a href="mailto:${escapeHtml(event.email)}" class="detail-link">${escapeHtml(event.email)}</a>
+                        </div>
+                    </div>
+                    ${event.phone ? `
+                    <div class="event-detail-item">
+                        <span class="detail-icon">📞</span>
+                        <div class="detail-content">
+                            <span class="detail-label">Phone</span>
+                            <a href="tel:${escapeHtml(event.phone)}" class="detail-link">${escapeHtml(event.phone)}</a>
+                        </div>
+                    </div>
+                    ` : ''}
+                </div>
             </div>
-
-            <div class="event-details-actions">
-                <button class="contact-organizer-btn" onclick="contactOrganizer('${escapeHtml(event.email)}', '${escapeHtml(event.phone || '')}')">Contact Organizer</button>
-                <button class="share-event-btn" onclick="shareEvent('${event.id}')">Share Event</button>
-                <button class="delete-event-details-btn" onclick="deleteEventFromDetails('${event.id}')">🗑️ Delete Event</button>
+        </div>
+        <div class="event-map-wrapper">
+            <div id="eventMap" class="event-map-container">
+                <!-- Google Maps will be loaded here -->
             </div>
+        </div>
+        <div class="event-details-actions">
+            <button class="contact-organizer-btn" onclick="contactOrganizer('${escapeHtml(event.email)}', '${escapeHtml(event.phone || '')}')">Contact Organizer</button>
+            <button class="share-event-btn" onclick="shareEvent('${event.id}')">Share Event</button>
         </div>
     `;
+    
+    // Update back link dynamically
+    setTimeout(() => {
+        const backLinkElement = document.querySelector('.back-link');
+        if (backLinkElement) {
+            backLinkElement.href = backLink;
+            backLinkElement.textContent = backLinkText;
+        }
+    }, 100);
+    
+    // Initialize Google Maps
+    setTimeout(() => {
+        initEventMap(event.location);
+    }, 200);
+}
+
+function getCategoryInfo(category) {
+    const categories = {
+        'music': { icon: '🎵', name: 'Music Event' },
+        'kids': { icon: '👶', name: 'Kids Event' },
+        'sports': { icon: '⚽', name: 'Sports Event' },
+        'art': { icon: '🎨', name: 'Art Event' },
+        'reading': { icon: '📚', name: 'Reading Event' },
+        'bakery': { icon: '🍰', name: 'Bakery Event' }
+    };
+    return categories[category] || { icon: '📅', name: 'Event' };
+}
+
+function initEventMap(location) {
+    const mapContainer = document.getElementById('eventMap');
+    if (!mapContainer || !location) return;
+    
+    // Encode location for Google Maps embed (using search instead of place API)
+    const encodedLocation = encodeURIComponent(location + ', Kosovo');
+    const mapUrl = `https://www.google.com/maps?q=${encodedLocation}&output=embed`;
+    
+    mapContainer.innerHTML = `<iframe 
+        width="100%" 
+        height="100%" 
+        style="border:0" 
+        loading="lazy" 
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="${mapUrl}">
+    </iframe>`;
 }
 
 function contactOrganizer(email, phone) {

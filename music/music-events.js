@@ -121,6 +121,28 @@ function loadEvents() {
             if (!events || events.length === 0) {
                 // Fallback to localStorage
                 events = JSON.parse(localStorage.getItem('musicEvents') || '[]');
+                
+                // If no events exist, create a sample event
+                if (events.length === 0) {
+                    const sampleEvent = {
+                        id: 'gjakova-concert-2025',
+                        title: 'Koncert në Gjakovë',
+                        organizer: 'Gjakova Music Festival',
+                        date: '2025-12-25',
+                        time: '20:00',
+                        location: 'Gjakova',
+                        description: 'Një koncert i veçantë me artistë vendas dhe ndërkombëtarë. Një natë e paharrueshme me muzikë të shkëlqyer dhe energji pozitive.',
+                        price: 15.00,
+                        capacity: 500,
+                        email: 'info@gjakovamusic.com',
+                        phone: '+383 44 123 456',
+                        category: 'music',
+                        image: '../images/gjakovamusicevent.jpg',
+                        createdAt: new Date().toISOString()
+                    };
+                    events.push(sampleEvent);
+                    localStorage.setItem('musicEvents', JSON.stringify(events));
+                }
             }
             displayEvents(events);
             // Update background opacity when events are loaded
@@ -128,7 +150,30 @@ function loadEvents() {
         })
         .catch(error => {
             console.log('Server load failed, using localStorage:', error);
-            const events = JSON.parse(localStorage.getItem('musicEvents') || '[]');
+            let events = JSON.parse(localStorage.getItem('musicEvents') || '[]');
+            
+            // If no events exist, create a sample event
+            if (events.length === 0) {
+                const sampleEvent = {
+                    id: 'gjakova-concert-2025',
+                    title: 'Koncert në Gjakovë',
+                    organizer: 'Gjakova Music Festival',
+                    date: '2025-12-25',
+                    time: '20:00',
+                    location: 'Gjakova',
+                    description: 'Një koncert i veçantë me artistë vendas dhe ndërkombëtarë. Një natë e paharrueshme me muzikë të shkëlqyer dhe energji pozitive.',
+                    price: 15.00,
+                    capacity: 500,
+                    email: 'info@gjakovamusic.com',
+                    phone: '+383 44 123 456',
+                    category: 'music',
+                    image: '../images/gjakovamusicevent.jpg',
+                    createdAt: new Date().toISOString()
+                };
+                events.push(sampleEvent);
+                localStorage.setItem('musicEvents', JSON.stringify(events));
+            }
+            
             displayEvents(events);
             updateBackgroundOpacity(events.length);
         });
@@ -173,51 +218,41 @@ function displayEvents(events) {
     // Sort events by date (earliest first)
     events.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-    eventsGrid.innerHTML = events.map(event => `
+    eventsGrid.innerHTML = events.map(event => {
+        // Get event image - always use the specified image
+        const eventImage = event.image || event.imageUrl || '../images/gjakovamusicevent.jpg';
+        const imageHtml = eventImage ? `<div class="event-card-image">
+            <img src="${eventImage}" alt="${escapeHtml(event.title)}" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+        </div>` : '';
+
+        return `
         <div class="event-card" data-event-id="${event.id}">
+            ${imageHtml}
             <div class="event-card-header">
                 <h3 class="event-card-title">${escapeHtml(event.title)}</h3>
             </div>
             <div class="event-card-body">
                 <div class="event-info">
-                    <span class="event-icon">📅</span>
-                    <span>${formatDate(event.date)} at ${formatTime(event.time)}</span>
+                    <span>Location: ${escapeHtml(event.location)}</span>
                 </div>
                 <div class="event-info">
-                    <span class="event-icon">📍</span>
-                    <span>${escapeHtml(event.location)}</span>
+                    <span>Date: ${formatDate(event.date)} • ${formatTime(event.time)}</span>
                 </div>
-                <div class="event-info">
-                    <span class="event-icon">👤</span>
-                    <span>Organized by ${escapeHtml(event.organizer)}</span>
-                </div>
-                ${event.price > 0 ? `
-                <div class="event-info">
-                    <span class="event-icon">💶</span>
-                    <span>${event.price.toFixed(2)} EUR</span>
-                </div>
-                ` : '<div class="event-info"><span class="event-icon">🆓</span><span>Free</span></div>'}
-                ${event.capacity ? `
-                <div class="event-info">
-                    <span class="event-icon">👥</span>
-                    <span>Max ${event.capacity} participants</span>
-                </div>
-                ` : ''}
             </div>
             <div class="event-card-footer">
                 <p class="event-description-preview">${escapeHtml(event.description.substring(0, 100))}${event.description.length > 100 ? '...' : ''}</p>
                 <div class="event-card-actions">
                     <button class="view-event-btn" onclick="viewEventDetails('${event.id}')">View Details</button>
-                    <button class="delete-event-btn" onclick="deleteEvent('${event.id}')">🗑️ Delete</button>
                 </div>
             </div>
         </div>
-    `).join('');
+    `;
+    }).join('');
 }
 
 // View event details
 function viewEventDetails(eventId) {
-    window.location.href = `event-details.html?id=${eventId}`;
+    window.location.href = `../event-details/event-details.html?id=${eventId}`;
 }
 
 // Delete event
@@ -262,18 +297,15 @@ function deleteEventFromServer(eventId) {
 function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', { 
-        weekday: 'short', 
         year: 'numeric', 
-        month: 'short', 
+        month: 'long', 
         day: 'numeric' 
     });
 }
 
 function formatTime(timeString) {
     const [hours, minutes] = timeString.split(':');
-    const hour12 = parseInt(hours) % 12 || 12;
-    const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM';
-    return `${hour12}:${minutes} ${ampm}`;
+    return `${hours}:${minutes}`;
 }
 
 function escapeHtml(text) {

@@ -138,19 +138,9 @@ function displayEvents(events) {
     }).join('');
 }
 
-// View event details - navigate to appropriate category page
+// View event details - navigate directly to event details page
 function viewEventDetails(eventId, category) {
-    const categoryPages = {
-        'kids': 'kids/kids.html',
-        'music': 'music/music.html',
-        'sports': 'sports/sports.html',
-        'art': 'art/art.html',
-        'bakery': 'bakery/bakery.html',
-        'reading': 'reading/reading.html'
-    };
-
-    const page = categoryPages[category] || 'event-details/event-details.html';
-    window.location.href = `${page}?id=${eventId}`;
+    window.location.href = `../event-details/event-details.html?id=${eventId}`;
 }
 
 // Initialize when page loads
