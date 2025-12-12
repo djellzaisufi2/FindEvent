@@ -153,7 +153,7 @@ body {
 
 /* ---------------- NAVIGATION BAR ---------------- */
 .navbar {
-    background: #ffffff;
+    background: #f8f9fa;
     border-bottom: 1px solid #e5e7eb;
 }
 
@@ -190,7 +190,7 @@ body {
 }
 
 .nav-link:hover {
-    color: #2d3748;
+    color: #ff7b54;
 }
 
 .nav-link::after {
@@ -201,7 +201,7 @@ body {
     transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background: #2d3748;
+    background: #ff7b54;
     transition: width 0.3s ease;
 }
 
