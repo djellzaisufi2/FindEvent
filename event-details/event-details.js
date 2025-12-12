@@ -268,8 +268,16 @@ function displayEventDetails(event) {
         </div>` : '';
     
     // Determine back link based on category
-    const backLink = event.category === 'music' ? '../music/music.html' : '../cities/cities.html';
-    const backLinkText = event.category === 'music' ? '← Back to Music Events' : '← Kthehu te Qytetet';
+    let backLink = '../cities/cities.html';
+    let backLinkText = '← Kthehu te Qytetet';
+    
+    if (event.category === 'music') {
+        backLink = '../music/music.html';
+        backLinkText = '← Back to Music Events';
+    } else if (event.category === 'sports') {
+        backLink = '../sports/sports.html';
+        backLinkText = '← Back to Events';
+    }
     
     detailsCard.innerHTML = `
         ${imageHtml}
