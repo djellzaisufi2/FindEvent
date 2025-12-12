@@ -123,8 +123,8 @@ function loadEvents() {
                 events = JSON.parse(localStorage.getItem('sportsEvents') || '[]');
             }
             
-            // Ensure sample event exists (add if missing)
-            const sampleEvent = {
+            // Ensure sample events exist (add if missing)
+            const sampleEvent1 = {
                 id: 'kosovo-hiking-2025',
                 title: 'Kosovo Hiking Adventure',
                 organizer: 'KosovoHiking',
@@ -141,10 +141,32 @@ function loadEvents() {
                 createdAt: new Date().toISOString()
             };
             
-            // Check if event exists, if not add it
-            const hasEvent = events.some(e => e.id === 'kosovo-hiking-2025');
-            if (!hasEvent) {
-                events.push(sampleEvent);
+            const sampleEvent2 = {
+                id: 'basketball-tournament-2025',
+                title: 'Basketball Tournament',
+                organizer: 'Kosovo Basketball Federation',
+                date: '2025-09-15',
+                time: '18:00',
+                location: 'Prishtina, Kosovo',
+                description: 'Join us for an exciting basketball tournament featuring top teams from across Kosovo. Watch intense matches, support your favorite teams, and enjoy the competitive spirit of the game. This tournament brings together the best basketball talent in the region for a weekend of thrilling sports action. Perfect for basketball fans and sports enthusiasts.',
+                price: 10.00,
+                capacity: 500,
+                email: 'info@kosovobasketball.com',
+                phone: '+383 38 123 456',
+                category: 'sports',
+                image: 'https://kosovapress.com/eng/admin/wp-content/uploads/2023/12/basketboll-1.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Check if events exist, if not add them
+            const hasEvent1 = events.some(e => e.id === 'kosovo-hiking-2025');
+            const hasEvent2 = events.some(e => e.id === 'basketball-tournament-2025');
+            
+            if (!hasEvent1) {
+                events.push(sampleEvent1);
+            }
+            if (!hasEvent2) {
+                events.push(sampleEvent2);
             }
             
             // Save updated events
@@ -156,8 +178,8 @@ function loadEvents() {
             console.log('Server load failed, using localStorage:', error);
             let events = JSON.parse(localStorage.getItem('sportsEvents') || '[]');
             
-            // Ensure sample event exists (add if missing)
-            const sampleEvent = {
+            // Ensure sample events exist (add if missing)
+            const sampleEvent1 = {
                 id: 'kosovo-hiking-2025',
                 title: 'Kosovo Hiking Adventure',
                 organizer: 'KosovoHiking',
@@ -174,10 +196,32 @@ function loadEvents() {
                 createdAt: new Date().toISOString()
             };
             
-            // Check if event exists, if not add it
-            const hasEvent = events.some(e => e.id === 'kosovo-hiking-2025');
-            if (!hasEvent) {
-                events.push(sampleEvent);
+            const sampleEvent2 = {
+                id: 'basketball-tournament-2025',
+                title: 'Basketball Tournament',
+                organizer: 'Kosovo Basketball Federation',
+                date: '2025-09-15',
+                time: '18:00',
+                location: 'Prishtina, Kosovo',
+                description: 'Join us for an exciting basketball tournament featuring top teams from across Kosovo. Watch intense matches, support your favorite teams, and enjoy the competitive spirit of the game. This tournament brings together the best basketball talent in the region for a weekend of thrilling sports action. Perfect for basketball fans and sports enthusiasts.',
+                price: 10.00,
+                capacity: 500,
+                email: 'info@kosovobasketball.com',
+                phone: '+383 38 123 456',
+                category: 'sports',
+                image: 'https://kosovapress.com/eng/admin/wp-content/uploads/2023/12/basketboll-1.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Check if events exist, if not add them
+            const hasEvent1 = events.some(e => e.id === 'kosovo-hiking-2025');
+            const hasEvent2 = events.some(e => e.id === 'basketball-tournament-2025');
+            
+            if (!hasEvent1) {
+                events.push(sampleEvent1);
+            }
+            if (!hasEvent2) {
+                events.push(sampleEvent2);
             }
             
             // Save updated events
