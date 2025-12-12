@@ -76,20 +76,18 @@
 }
 
 .sports-events-container .view-event-btn {
-    background: #ffd700;
-    color: #2d3748;
+    background: #ff7b54;
+    color: white;
     border: none;
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease;
 }
 
 .sports-events-container .view-event-btn:hover {
-    background: #ffed4e;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+    background: #ff6b40;
 }
 
 

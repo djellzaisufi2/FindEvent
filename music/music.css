@@ -676,20 +676,18 @@
 .view-event-btn {
     width: 100%;
     padding: 0.75rem 1.5rem;
-    background: #ffd700;
-    color: #2d3748;
+    background: #ff7b54;
+    color: white;
     border: none;
     border-radius: 8px;
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease;
 }
 
 .view-event-btn:hover {
-    background: #ffed4e;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+    background: #ff6b40;
 }
 
 .delete-event-btn {
