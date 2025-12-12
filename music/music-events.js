@@ -121,94 +121,110 @@ function loadEvents() {
             if (!events || events.length === 0) {
                 // Fallback to localStorage
                 events = JSON.parse(localStorage.getItem('musicEvents') || '[]');
-                
-                // If no events exist, create sample events
-                if (events.length === 0) {
-                    const sampleEvent1 = {
-                        id: 'gjakova-concert-2025',
-                        title: 'Koncert në Gjakovë',
-                        organizer: 'Gjakova Music Festival',
-                        date: '2025-12-25',
-                        time: '20:00',
-                        location: 'Gjakova',
-                        description: 'Një koncert i veçantë me artistë vendas dhe ndërkombëtarë. Një natë e paharrueshme me muzikë të shkëlqyer dhe energji pozitive.',
-                        price: 15.00,
-                        capacity: 500,
-                        email: 'info@gjakovamusic.com',
-                        phone: '+383 44 123 456',
-                        category: 'music',
-                        image: '../images/gjakovamusicevent.jpg',
-                        createdAt: new Date().toISOString()
-                    };
-                    
-                    const sampleEvent2 = {
-                        id: 'dokufest-closing-ceremony-2025',
-                        title: 'DokuFest Closing Ceremony',
-                        organizer: 'DokuFest International Documentary and Short Film Festival',
-                        date: '2025-08-15',
-                        time: '21:00',
-                        location: 'Prizren, Kosovo',
-                        description: 'Join us for the spectacular closing ceremony of DokuFest, one of the most prestigious documentary and short film festivals in the Balkans. Experience an unforgettable evening featuring live music performances, award presentations, and a celebration of cinematic excellence. This grand finale brings together filmmakers, artists, and film enthusiasts from around the world for a night of entertainment and cultural exchange.',
-                        price: 20.00,
-                        capacity: 1000,
-                        email: 'info@dokufest.com',
-                        phone: '+383 29 222 555',
-                        category: 'music',
-                        image: 'https://dokufest.com/images/uploads/_resampled/ClosingCeremony_E.Arapi_00__1.jpg',
-                        createdAt: new Date().toISOString()
-                    };
-                    
-                    events.push(sampleEvent1);
-                    events.push(sampleEvent2);
-                    localStorage.setItem('musicEvents', JSON.stringify(events));
-                }
             }
+            
+            // Ensure sample events exist (add if missing)
+            const sampleEvent1 = {
+                id: 'gjakova-concert-2025',
+                title: 'Koncert në Gjakovë',
+                organizer: 'Gjakova Music Festival',
+                date: '2025-12-25',
+                time: '20:00',
+                location: 'Gjakova',
+                description: 'Një koncert i veçantë me artistë vendas dhe ndërkombëtarë. Një natë e paharrueshme me muzikë të shkëlqyer dhe energji pozitive.',
+                price: 15.00,
+                capacity: 500,
+                email: 'info@gjakovamusic.com',
+                phone: '+383 44 123 456',
+                category: 'music',
+                image: '../images/gjakovamusicevent.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            const sampleEvent2 = {
+                id: 'dokufest-closing-ceremony-2025',
+                title: 'DokuFest Closing Ceremony',
+                organizer: 'DokuFest International Documentary and Short Film Festival',
+                date: '2025-08-15',
+                time: '21:00',
+                location: 'Prizren, Kosovo',
+                description: 'Join us for the spectacular closing ceremony of DokuFest, one of the most prestigious documentary and short film festivals in the Balkans. Experience an unforgettable evening featuring live music performances, award presentations, and a celebration of cinematic excellence. This grand finale brings together filmmakers, artists, and film enthusiasts from around the world for a night of entertainment and cultural exchange.',
+                price: 20.00,
+                capacity: 1000,
+                email: 'info@dokufest.com',
+                phone: '+383 29 222 555',
+                category: 'music',
+                image: 'https://dokufest.com/images/uploads/_resampled/ClosingCeremony_E.Arapi_00__1.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Check if events exist, if not add them
+            const hasEvent1 = events.some(e => e.id === 'gjakova-concert-2025');
+            const hasEvent2 = events.some(e => e.id === 'dokufest-closing-ceremony-2025');
+            
+            if (!hasEvent1) {
+                events.push(sampleEvent1);
+            }
+            if (!hasEvent2) {
+                events.push(sampleEvent2);
+            }
+            
+            // Save updated events
+            localStorage.setItem('musicEvents', JSON.stringify(events));
             displayEvents(events);
         })
         .catch(error => {
             console.log('Server load failed, using localStorage:', error);
             let events = JSON.parse(localStorage.getItem('musicEvents') || '[]');
             
-            // If no events exist, create sample events
-            if (events.length === 0) {
-                const sampleEvent1 = {
-                    id: 'gjakova-concert-2025',
-                    title: 'Koncert në Gjakovë',
-                    organizer: 'Gjakova Music Festival',
-                    date: '2025-12-25',
-                    time: '20:00',
-                    location: 'Gjakova',
-                    description: 'Një koncert i veçantë me artistë vendas dhe ndërkombëtarë. Një natë e paharrueshme me muzikë të shkëlqyer dhe energji pozitive.',
-                    price: 15.00,
-                    capacity: 500,
-                    email: 'info@gjakovamusic.com',
-                    phone: '+383 44 123 456',
-                    category: 'music',
-                    image: '../images/gjakovamusicevent.jpg',
-                    createdAt: new Date().toISOString()
-                };
-                
-                const sampleEvent2 = {
-                    id: 'dokufest-closing-ceremony-2025',
-                    title: 'DokuFest Closing Ceremony',
-                    organizer: 'DokuFest International Documentary and Short Film Festival',
-                    date: '2025-08-15',
-                    time: '21:00',
-                    location: 'Prizren, Kosovo',
-                    description: 'Join us for the spectacular closing ceremony of DokuFest, one of the most prestigious documentary and short film festivals in the Balkans. Experience an unforgettable evening featuring live music performances, award presentations, and a celebration of cinematic excellence. This grand finale brings together filmmakers, artists, and film enthusiasts from around the world for a night of entertainment and cultural exchange.',
-                    price: 20.00,
-                    capacity: 1000,
-                    email: 'info@dokufest.com',
-                    phone: '+383 29 222 555',
-                    category: 'music',
-                    image: 'https://dokufest.com/images/uploads/_resampled/ClosingCeremony_E.Arapi_00__1.jpg',
-                    createdAt: new Date().toISOString()
-                };
-                
+            // Ensure sample events exist (add if missing)
+            const sampleEvent1 = {
+                id: 'gjakova-concert-2025',
+                title: 'Koncert në Gjakovë',
+                organizer: 'Gjakova Music Festival',
+                date: '2025-12-25',
+                time: '20:00',
+                location: 'Gjakova',
+                description: 'Një koncert i veçantë me artistë vendas dhe ndërkombëtarë. Një natë e paharrueshme me muzikë të shkëlqyer dhe energji pozitive.',
+                price: 15.00,
+                capacity: 500,
+                email: 'info@gjakovamusic.com',
+                phone: '+383 44 123 456',
+                category: 'music',
+                image: '../images/gjakovamusicevent.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            const sampleEvent2 = {
+                id: 'dokufest-closing-ceremony-2025',
+                title: 'DokuFest Closing Ceremony',
+                organizer: 'DokuFest International Documentary and Short Film Festival',
+                date: '2025-08-15',
+                time: '21:00',
+                location: 'Prizren, Kosovo',
+                description: 'Join us for the spectacular closing ceremony of DokuFest, one of the most prestigious documentary and short film festivals in the Balkans. Experience an unforgettable evening featuring live music performances, award presentations, and a celebration of cinematic excellence. This grand finale brings together filmmakers, artists, and film enthusiasts from around the world for a night of entertainment and cultural exchange.',
+                price: 20.00,
+                capacity: 1000,
+                email: 'info@dokufest.com',
+                phone: '+383 29 222 555',
+                category: 'music',
+                image: 'https://dokufest.com/images/uploads/_resampled/ClosingCeremony_E.Arapi_00__1.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Check if events exist, if not add them
+            const hasEvent1 = events.some(e => e.id === 'gjakova-concert-2025');
+            const hasEvent2 = events.some(e => e.id === 'dokufest-closing-ceremony-2025');
+            
+            if (!hasEvent1) {
                 events.push(sampleEvent1);
-                events.push(sampleEvent2);
-                localStorage.setItem('musicEvents', JSON.stringify(events));
             }
+            if (!hasEvent2) {
+                events.push(sampleEvent2);
+            }
+            
+            // Save updated events
+            localStorage.setItem('musicEvents', JSON.stringify(events));
             
             displayEvents(events);
         });
