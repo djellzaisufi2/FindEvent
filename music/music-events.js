@@ -122,9 +122,9 @@ function loadEvents() {
                 // Fallback to localStorage
                 events = JSON.parse(localStorage.getItem('musicEvents') || '[]');
                 
-                // If no events exist, create a sample event
+                // If no events exist, create sample events
                 if (events.length === 0) {
-                    const sampleEvent = {
+                    const sampleEvent1 = {
                         id: 'gjakova-concert-2025',
                         title: 'Koncert në Gjakovë',
                         organizer: 'Gjakova Music Festival',
@@ -140,7 +140,26 @@ function loadEvents() {
                         image: '../images/gjakovamusicevent.jpg',
                         createdAt: new Date().toISOString()
                     };
-                    events.push(sampleEvent);
+                    
+                    const sampleEvent2 = {
+                        id: 'dokufest-closing-ceremony-2025',
+                        title: 'DokuFest Closing Ceremony',
+                        organizer: 'DokuFest International Documentary and Short Film Festival',
+                        date: '2025-08-15',
+                        time: '21:00',
+                        location: 'Prizren, Kosovo',
+                        description: 'Join us for the spectacular closing ceremony of DokuFest, one of the most prestigious documentary and short film festivals in the Balkans. Experience an unforgettable evening featuring live music performances, award presentations, and a celebration of cinematic excellence. This grand finale brings together filmmakers, artists, and film enthusiasts from around the world for a night of entertainment and cultural exchange.',
+                        price: 20.00,
+                        capacity: 1000,
+                        email: 'info@dokufest.com',
+                        phone: '+383 29 222 555',
+                        category: 'music',
+                        image: 'https://dokufest.com/images/uploads/_resampled/ClosingCeremony_E.Arapi_00__1.jpg',
+                        createdAt: new Date().toISOString()
+                    };
+                    
+                    events.push(sampleEvent1);
+                    events.push(sampleEvent2);
                     localStorage.setItem('musicEvents', JSON.stringify(events));
                 }
             }
@@ -150,9 +169,9 @@ function loadEvents() {
             console.log('Server load failed, using localStorage:', error);
             let events = JSON.parse(localStorage.getItem('musicEvents') || '[]');
             
-            // If no events exist, create a sample event
+            // If no events exist, create sample events
             if (events.length === 0) {
-                const sampleEvent = {
+                const sampleEvent1 = {
                     id: 'gjakova-concert-2025',
                     title: 'Koncert në Gjakovë',
                     organizer: 'Gjakova Music Festival',
@@ -168,7 +187,26 @@ function loadEvents() {
                     image: '../images/gjakovamusicevent.jpg',
                     createdAt: new Date().toISOString()
                 };
-                events.push(sampleEvent);
+                
+                const sampleEvent2 = {
+                    id: 'dokufest-closing-ceremony-2025',
+                    title: 'DokuFest Closing Ceremony',
+                    organizer: 'DokuFest International Documentary and Short Film Festival',
+                    date: '2025-08-15',
+                    time: '21:00',
+                    location: 'Prizren, Kosovo',
+                    description: 'Join us for the spectacular closing ceremony of DokuFest, one of the most prestigious documentary and short film festivals in the Balkans. Experience an unforgettable evening featuring live music performances, award presentations, and a celebration of cinematic excellence. This grand finale brings together filmmakers, artists, and film enthusiasts from around the world for a night of entertainment and cultural exchange.',
+                    price: 20.00,
+                    capacity: 1000,
+                    email: 'info@dokufest.com',
+                    phone: '+383 29 222 555',
+                    category: 'music',
+                    image: 'https://dokufest.com/images/uploads/_resampled/ClosingCeremony_E.Arapi_00__1.jpg',
+                    createdAt: new Date().toISOString()
+                };
+                
+                events.push(sampleEvent1);
+                events.push(sampleEvent2);
                 localStorage.setItem('musicEvents', JSON.stringify(events));
             }
             
