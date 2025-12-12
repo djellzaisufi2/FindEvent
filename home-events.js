@@ -128,7 +128,7 @@ function displayEvents(events) {
                     ` : '<div class="event-info"><span class="event-icon">🆓</span><span>Free</span></div>'}
                 </div>
                 <div class="event-card-footer">
-                    <p class="event-description-preview">${escapeHtml((event.description || '').substring(0, 120))}${(event.description || '').length > 120 ? '...' : ''}</p>
+                    <p class="event-description-preview">${escapeHtml((event.description || '').substring(0, 80))}${(event.description || '').length > 80 ? '...' : ''}</p>
                     <div class="event-card-actions">
                         <button class="view-event-btn" onclick="viewEventDetails('${event.id}', '${event.category || ''}')">View Details</button>
                     </div>
