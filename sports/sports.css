@@ -76,7 +76,7 @@
 }
 
 .sports-events-container .view-event-btn {
-    background: #ff7b54;
+    background: #4a5568;
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -87,7 +87,7 @@
 }
 
 .sports-events-container .view-event-btn:hover {
-    background: #ff6b40;
+    background: #2d3748;
 }
 
 

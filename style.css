@@ -1245,7 +1245,7 @@ body {
 .view-event-btn {
     width: 100%;
     padding: 0.65rem;
-    background: #ff7b54;
+    background: #4a5568;
     color: white;
     border: none;
     border-radius: 8px;
@@ -1256,7 +1256,7 @@ body {
 }
 
 .view-event-btn:hover {
-    background: #ff6b40;
+    background: #2d3748;
 }
 
 .delete-event-btn {
