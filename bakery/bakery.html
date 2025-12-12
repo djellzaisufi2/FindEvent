@@ -8,7 +8,71 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <div class="background-overlay"></div>
+    <div class="background-overlay bakery-background">
+        <main class="bakery-main-content">
+            <div class="create-event-section-top">
+                <button id="createEventBtn" class="create-event-btn">➕ Add Event</button>
+            </div>
+            <div class="bakery-events-container">
+                <div id="eventsGrid" class="events-grid"></div>
+            </div>
+            <!-- Event Form Modal -->
+            <div id="eventFormModal" class="event-form-modal">
+                <div class="event-form-container">
+                    <span class="close-modal" id="closeModal">&times;</span>
+                    <h2 class="form-title">Create Bakery Event</h2>
+                    <form id="eventForm" class="event-form">
+                        <div class="form-group">
+                            <label for="eventTitle">Event Title</label>
+                            <input type="text" id="eventTitle" name="eventTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="organizerName">Organizer Name</label>
+                            <input type="text" id="organizerName" name="organizerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDate">Date</label>
+                            <input type="date" id="eventDate" name="eventDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventTime">Time</label>
+                            <input type="time" id="eventTime" name="eventTime" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventLocation">Location</label>
+                            <input type="text" id="eventLocation" name="eventLocation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDescription">Description</label>
+                            <textarea id="eventDescription" name="eventDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventPrice">Ticket Price (EUR)</label>
+                            <input type="number" step="0.01" id="eventPrice" name="eventPrice" min="0" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventCapacity">Capacity</label>
+                            <input type="number" id="eventCapacity" name="eventCapacity" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="organizerEmail">Organizer Email</label>
+                            <input type="email" id="organizerEmail" name="organizerEmail">
+                        </div>
+                        <div class="form-group">
+                            <label for="organizerPhone">Organizer Phone</label>
+                            <input type="tel" id="organizerPhone" name="organizerPhone">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-cancel" id="cancelBtn">Cancel</button>
+                            <button type="submit" class="btn-submit">Create Event</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../script.js"></script>
+    <script src="bakery-events.js"></script>
 </body>
 </html>
 
