@@ -272,99 +272,34 @@ function displayEventDetails(event) {
     const backLinkText = event.category === 'music' ? '← Back to Music Events' : '← Kthehu te Qytetet';
     
     detailsCard.innerHTML = `
+        ${imageHtml}
         <div class="event-details-header">
             <h1 class="event-details-title">${escapeHtml(event.title)}</h1>
-            <span class="event-details-category">${categoryInfo.icon} ${categoryInfo.name}</span>
         </div>
-        ${imageHtml}
-        <div class="event-content-grid">
-            <div class="event-left-column">
-                <div class="event-details-section">
-                    <h2 class="section-title">Description</h2>
-                    <p class="event-description-full">${escapeHtml(event.description)}</p>
-                </div>
+        <div class="event-details-info">
+            <div class="event-info-simple">
+                <span class="info-label">Date:</span>
+                <span class="info-value">${formatDate(event.date)} • ${formatTime(event.time)}</span>
             </div>
-            <div class="event-right-column">
-                <div class="event-details-section">
-                    <h2 class="section-title">Event Information</h2>
-                    <div class="event-detail-item">
-                        <span class="detail-icon">📅</span>
-                        <div class="detail-content">
-                            <span class="detail-label">Date & Time</span>
-                            <span class="detail-value">${formatDate(event.date)} at ${formatTime(event.time)}</span>
-                        </div>
-                    </div>
-                    <div class="event-detail-item">
-                        <span class="detail-icon">📍</span>
-                        <div class="detail-content">
-                            <span class="detail-label">Location</span>
-                            <span class="detail-value">${escapeHtml(event.location)}</span>
-                        </div>
-                    </div>
-                    <div class="event-detail-item">
-                        <span class="detail-icon">💶</span>
-                        <div class="detail-content">
-                            <span class="detail-label">Price</span>
-                            <span class="detail-value">${event.price > 0 ? `${event.price.toFixed(2)} EUR` : 'Free'}</span>
-                        </div>
-                    </div>
-                    ${event.capacity ? `
-                    <div class="event-detail-item">
-                        <span class="detail-icon">👥</span>
-                        <div class="detail-content">
-                            <span class="detail-label">Capacity</span>
-                            <span class="detail-value">${event.capacity} participants</span>
-                        </div>
-                    </div>
-                    ` : ''}
-                </div>
-                <div class="event-details-section">
-                    <h2 class="section-title">Organizer Information</h2>
-                    <div class="event-detail-item">
-                        <span class="detail-icon">👤</span>
-                        <div class="detail-content">
-                            <span class="detail-label">Organizer</span>
-                            <span class="detail-value">${escapeHtml(event.organizer)}</span>
-                        </div>
-                    </div>
-                    <div class="event-detail-item">
-                        <span class="detail-icon">📧</span>
-                        <div class="detail-content">
-                            <span class="detail-label">Email</span>
-                            <a href="mailto:${escapeHtml(event.email)}" class="detail-link">${escapeHtml(event.email)}</a>
-                        </div>
-                    </div>
-                    ${event.phone ? `
-                    <div class="event-detail-item">
-                        <span class="detail-icon">📞</span>
-                        <div class="detail-content">
-                            <span class="detail-label">Phone</span>
-                            <a href="tel:${escapeHtml(event.phone)}" class="detail-link">${escapeHtml(event.phone)}</a>
-                        </div>
-                    </div>
-                    ` : ''}
-                </div>
+            <div class="event-info-simple">
+                <span class="info-label">Location:</span>
+                <span class="info-value">${escapeHtml(event.location)}</span>
             </div>
         </div>
-        <div class="event-map-wrapper">
+        <div class="event-description-section">
+            <p class="event-description-full">${escapeHtml(event.description)}</p>
+        </div>
+        <div class="event-location-section">
+            <h2 class="section-title">Event Location</h2>
             <div id="eventMap" class="event-map-container">
                 <!-- Google Maps will be loaded here -->
             </div>
         </div>
-        <div class="event-details-actions">
-            <button class="contact-organizer-btn" onclick="contactOrganizer('${escapeHtml(event.email)}', '${escapeHtml(event.phone || '')}')">Contact Organizer</button>
-            <button class="share-event-btn" onclick="shareEvent('${event.id}')">Share Event</button>
+        <div class="back-link-container">
+            <a href="${backLink}" class="back-link">${backLinkText}</a>
         </div>
     `;
     
-    // Update back link dynamically
-    setTimeout(() => {
-        const backLinkElement = document.querySelector('.back-link');
-        if (backLinkElement) {
-            backLinkElement.href = backLink;
-            backLinkElement.textContent = backLinkText;
-        }
-    }, 100);
     
     // Initialize Google Maps
     setTimeout(() => {
