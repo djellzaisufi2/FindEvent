@@ -94,7 +94,7 @@ function createEvent() {
 
 // Save event to PHP backend
 function saveEventToServer(eventData) {
-    fetch('api/save-event.php', {
+    fetch('../api/save-event.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -122,18 +122,74 @@ function loadEvents() {
                 // Fallback to localStorage
                 events = JSON.parse(localStorage.getItem('kidsEvents') || '[]');
             }
+            
+            // Ensure sample events exist (add if missing)
+            const sampleEvent1 = {
+                id: 'kids-activity-day-2025',
+                title: 'Kids Activity Day',
+                organizer: 'RIT Kosovo',
+                date: '2025-11-10',
+                time: '10:00',
+                location: 'Prishtina, Kosovo',
+                description: 'Join us for a fun-filled day of activities designed especially for kids! This event features interactive games, creative workshops, educational activities, and plenty of opportunities for children to learn, play, and make new friends. Our experienced team will ensure a safe and engaging environment where kids can explore their creativity and have an amazing time. Perfect for children of all ages looking for an exciting day of adventure and learning.',
+                price: 5.00,
+                capacity: 50,
+                email: 'info@rit.edu',
+                phone: '+383 38 200 300',
+                category: 'kids',
+                image: 'https://www.rit.edu/kosovo/sites/rit.edu.kosovo/files/inline-images/Photo%204-4.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Check if event exists, if not add it
+            const hasEvent1 = events.some(e => e.id === 'kids-activity-day-2025');
+            
+            if (!hasEvent1) {
+                events.push(sampleEvent1);
+            }
+            
+            // Save updated events
+            localStorage.setItem('kidsEvents', JSON.stringify(events));
             displayEvents(events);
         })
         .catch(error => {
             console.log('Server load failed, using localStorage:', error);
-            const events = JSON.parse(localStorage.getItem('kidsEvents') || '[]');
+            let events = JSON.parse(localStorage.getItem('kidsEvents') || '[]');
+            
+            // Ensure sample events exist (add if missing)
+            const sampleEvent1 = {
+                id: 'kids-activity-day-2025',
+                title: 'Kids Activity Day',
+                organizer: 'RIT Kosovo',
+                date: '2025-11-10',
+                time: '10:00',
+                location: 'Prishtina, Kosovo',
+                description: 'Join us for a fun-filled day of activities designed especially for kids! This event features interactive games, creative workshops, educational activities, and plenty of opportunities for children to learn, play, and make new friends. Our experienced team will ensure a safe and engaging environment where kids can explore their creativity and have an amazing time. Perfect for children of all ages looking for an exciting day of adventure and learning.',
+                price: 5.00,
+                capacity: 50,
+                email: 'info@rit.edu',
+                phone: '+383 38 200 300',
+                category: 'kids',
+                image: 'https://www.rit.edu/kosovo/sites/rit.edu.kosovo/files/inline-images/Photo%204-4.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Check if event exists, if not add it
+            const hasEvent1 = events.some(e => e.id === 'kids-activity-day-2025');
+            
+            if (!hasEvent1) {
+                events.push(sampleEvent1);
+            }
+            
+            // Save updated events
+            localStorage.setItem('kidsEvents', JSON.stringify(events));
             displayEvents(events);
         });
 }
 
 // Load events from PHP backend
 function loadEventsFromServer() {
-    return fetch('api/get-events.php?category=kids')
+    return fetch('../api/get-events.php?category=kids')
         .then(response => response.json())
         .then(data => {
             if (Array.isArray(data)) {
@@ -156,51 +212,41 @@ function displayEvents(events) {
     // Sort events by date (earliest first)
     events.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-    eventsGrid.innerHTML = events.map(event => `
+    eventsGrid.innerHTML = events.map(event => {
+        // Get event image
+        const eventImage = event.image || event.imageUrl || '';
+        const imageHtml = eventImage ? `<div class="event-card-image">
+            <img src="${eventImage}" alt="${escapeHtml(event.title)}" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+        </div>` : '';
+        
+        return `
         <div class="event-card" data-event-id="${event.id}">
+            ${imageHtml}
             <div class="event-card-header">
                 <h3 class="event-card-title">${escapeHtml(event.title)}</h3>
             </div>
             <div class="event-card-body">
                 <div class="event-info">
-                    <span class="event-icon">📅</span>
-                    <span>${formatDate(event.date)} at ${formatTime(event.time)}</span>
+                    <span>Location: ${escapeHtml(event.location)}</span>
                 </div>
                 <div class="event-info">
-                    <span class="event-icon">📍</span>
-                    <span>${escapeHtml(event.location)}</span>
+                    <span>Date: ${formatDate(event.date)} • ${formatTime(event.time)}</span>
                 </div>
-                <div class="event-info">
-                    <span class="event-icon">👤</span>
-                    <span>Organized by ${escapeHtml(event.organizer)}</span>
-                </div>
-                ${event.price > 0 ? `
-                <div class="event-info">
-                    <span class="event-icon">💶</span>
-                    <span>${event.price.toFixed(2)} EUR</span>
-                </div>
-                ` : '<div class="event-info"><span class="event-icon">🆓</span><span>Free</span></div>'}
-                ${event.capacity ? `
-                <div class="event-info">
-                    <span class="event-icon">👥</span>
-                    <span>Max ${event.capacity} participants</span>
-                </div>
-                ` : ''}
             </div>
             <div class="event-card-footer">
                 <p class="event-description-preview">${escapeHtml(event.description.substring(0, 100))}${event.description.length > 100 ? '...' : ''}</p>
                 <div class="event-card-actions">
                     <button class="view-event-btn" onclick="viewEventDetails('${event.id}')">View Details</button>
-                    <button class="delete-event-btn" onclick="deleteEvent('${event.id}')">🗑️ Delete</button>
                 </div>
             </div>
         </div>
-    `).join('');
+    `;
+    }).join('');
 }
 
 // View event details
 function viewEventDetails(eventId) {
-    window.location.href = `event-details.html?id=${eventId}`;
+    window.location.href = `../event-details/event-details.html?id=${eventId}`;
 }
 
 // Delete event
@@ -226,7 +272,7 @@ function deleteEvent(eventId) {
 
 // Delete event from PHP backend
 function deleteEventFromServer(eventId) {
-    fetch(`api/delete-event.php?id=${eventId}`, {
+    fetch(`../api/delete-event.php?id=${eventId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -245,18 +291,15 @@ function deleteEventFromServer(eventId) {
 function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', { 
-        weekday: 'short', 
         year: 'numeric', 
-        month: 'short', 
+        month: 'long', 
         day: 'numeric' 
     });
 }
 
 function formatTime(timeString) {
     const [hours, minutes] = timeString.split(':');
-    const hour12 = parseInt(hours) % 12 || 12;
-    const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM';
-    return `${hour12}:${minutes} ${ampm}`;
+    return `${hours}:${minutes}`;
 }
 
 function escapeHtml(text) {

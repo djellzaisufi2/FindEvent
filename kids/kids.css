@@ -1,44 +1,73 @@
 /* ---------------- KIDS PAGE STYLES ---------------- */
 
-
+/* Kids Main Content */
 .kids-main-content {
     position: relative;
     min-height: calc(100vh - 200px);
-    padding: 2rem 1rem;
-    background: linear-gradient(135deg, rgba(255, 123, 84, 0.05) 0%, rgba(255, 210, 107, 0.05) 100%);
+    padding: 0;
+    margin-top: 0;
+    padding-top: 2rem;
+    background: #ffffff;
 }
 
-.kids-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    padding: 2rem 0;
-}
-
-.kids-page-title {
-    font-size: 3rem;
-    font-weight: 700;
-    background: linear-gradient(90deg, #ff7b54, #ffb26b, #ffd56b);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin: 0 0 1rem 0;
-    letter-spacing: 2px;
-}
-
-.kids-page-subtitle {
-    font-size: 1.2rem;
-    color: #666;
-    margin: 0;
-    font-weight: 400;
-}
-
-/* Events Container */
 .kids-events-container {
     position: relative;
     z-index: 1;
-    padding: 1.5rem;
+    padding: 1rem 2rem 2rem 2rem;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     min-height: 250px;
+}
+
+.kids-page-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 3rem;
+    padding-top: 1rem;
+}
+
+/* Make event cards more visible */
+.kids-events-container .event-card {
+    background: #ffffff;
+    backdrop-filter: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+.kids-events-container .event-card:hover {
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+}
+
+.kids-events-container .event-card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.kids-events-container .event-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.kids-events-container .view-event-btn {
+    background: #4a5568;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.kids-events-container .view-event-btn:hover {
+    background: #2d3748;
 }
