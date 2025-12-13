@@ -141,11 +141,32 @@ function loadEvents() {
                 createdAt: new Date().toISOString()
             };
             
-            // Check if event exists, if not add it
+            const sampleEvent2 = {
+                id: 'kids-workshop-2025',
+                title: 'Creative Kids Workshop',
+                organizer: 'Kosovo Youth Center',
+                date: '2025-12-05',
+                time: '14:00',
+                location: 'Prishtina, Kosovo',
+                description: 'An engaging and creative workshop designed for children to explore their artistic talents. Kids will participate in various hands-on activities including painting, drawing, crafting, and storytelling. This workshop encourages creativity, imagination, and self-expression in a fun and supportive environment. All materials are provided, and children will take home their beautiful creations. Perfect for young artists and creative minds!',
+                price: 7.00,
+                capacity: 30,
+                email: 'info@kosovoyouth.com',
+                phone: '+383 38 300 400',
+                category: 'kids',
+                image: 'https://cijm.org.gr/wp-content/uploads/2021/07/205281512_5700016840070308_6141789382687542383_n-1024x683.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Check if events exist, if not add them
             const hasEvent1 = events.some(e => e.id === 'kids-activity-day-2025');
+            const hasEvent2 = events.some(e => e.id === 'kids-workshop-2025');
             
             if (!hasEvent1) {
                 events.push(sampleEvent1);
+            }
+            if (!hasEvent2) {
+                events.push(sampleEvent2);
             }
             
             // Save updated events
@@ -174,11 +195,32 @@ function loadEvents() {
                 createdAt: new Date().toISOString()
             };
             
-            // Check if event exists, if not add it
+            const sampleEvent2 = {
+                id: 'kids-workshop-2025',
+                title: 'Creative Kids Workshop',
+                organizer: 'Kosovo Youth Center',
+                date: '2025-12-05',
+                time: '14:00',
+                location: 'Prishtina, Kosovo',
+                description: 'An engaging and creative workshop designed for children to explore their artistic talents. Kids will participate in various hands-on activities including painting, drawing, crafting, and storytelling. This workshop encourages creativity, imagination, and self-expression in a fun and supportive environment. All materials are provided, and children will take home their beautiful creations. Perfect for young artists and creative minds!',
+                price: 7.00,
+                capacity: 30,
+                email: 'info@kosovoyouth.com',
+                phone: '+383 38 300 400',
+                category: 'kids',
+                image: 'https://cijm.org.gr/wp-content/uploads/2021/07/205281512_5700016840070308_6141789382687542383_n-1024x683.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Check if events exist, if not add them
             const hasEvent1 = events.some(e => e.id === 'kids-activity-day-2025');
+            const hasEvent2 = events.some(e => e.id === 'kids-workshop-2025');
             
             if (!hasEvent1) {
                 events.push(sampleEvent1);
+            }
+            if (!hasEvent2) {
+                events.push(sampleEvent2);
             }
             
             // Save updated events
