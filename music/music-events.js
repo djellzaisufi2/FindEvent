@@ -121,56 +121,170 @@ function loadEvents() {
             if (!events || events.length === 0) {
                 // Fallback to localStorage
                 events = JSON.parse(localStorage.getItem('musicEvents') || '[]');
-                
-                // If no events exist, create a sample event
-                if (events.length === 0) {
-                    const sampleEvent = {
-                        id: 'gjakova-concert-2025',
-                        title: 'Koncert në Gjakovë',
-                        organizer: 'Gjakova Music Festival',
-                        date: '2025-12-25',
-                        time: '20:00',
-                        location: 'Gjakova',
-                        description: 'Një koncert i veçantë me artistë vendas dhe ndërkombëtarë. Një natë e paharrueshme me muzikë të shkëlqyer dhe energji pozitive.',
-                        price: 15.00,
-                        capacity: 500,
-                        email: 'info@gjakovamusic.com',
-                        phone: '+383 44 123 456',
-                        category: 'music',
-                        image: '../images/gjakovamusicevent.jpg',
-                        createdAt: new Date().toISOString()
-                    };
-                    events.push(sampleEvent);
-                    localStorage.setItem('musicEvents', JSON.stringify(events));
-                }
             }
+            
+            // Ensure sample events exist (add if missing)
+            const sampleEvent1 = {
+                id: 'gjakova-concert-2025',
+                title: 'Koncert në Gjakovë',
+                organizer: 'Gjakova Music Festival',
+                date: '2025-12-25',
+                time: '20:00',
+                location: 'Gjakova',
+                description: 'Një koncert i veçantë me artistë vendas dhe ndërkombëtarë. Një natë e paharrueshme me muzikë të shkëlqyer dhe energji pozitive.',
+                price: 15.00,
+                capacity: 500,
+                email: 'info@gjakovamusic.com',
+                phone: '+383 44 123 456',
+                category: 'music',
+                image: '../images/gjakovamusicevent.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            const sampleEvent2 = {
+                id: 'dokufest-closing-ceremony-2025',
+                title: 'DokuFest Closing Ceremony',
+                organizer: 'DokuFest International Documentary and Short Film Festival',
+                date: '2025-08-15',
+                time: '21:00',
+                location: 'Prizren, Kosovo',
+                description: 'Join us for the spectacular closing ceremony of DokuFest, one of the most prestigious documentary and short film festivals in the Balkans. Experience an unforgettable evening featuring live music performances, award presentations, and a celebration of cinematic excellence. This grand finale brings together filmmakers, artists, and film enthusiasts from around the world for a night of entertainment and cultural exchange.',
+                price: 20.00,
+                capacity: 1000,
+                email: 'info@dokufest.com',
+                phone: '+383 29 222 555',
+                category: 'music',
+                image: 'https://dokufest.com/images/uploads/_resampled/ClosingCeremony_E.Arapi_00__1.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+<<<<<<< Updated upstream
+            // Check if events exist, if not add them
+            const hasEvent1 = events.some(e => e.id === 'gjakova-concert-2025');
+            const hasEvent2 = events.some(e => e.id === 'dokufest-closing-ceremony-2025');
+=======
+            const sampleEvent3 = {
+                id: 'ferizaj-music-festival-2025',
+                title: 'Ferizaj Music Festival',
+                organizer: 'Ferizaj Cultural Center',
+                date: '2025-09-20',
+                time: '19:00',
+                location: 'Ferizaj, Kosovo',
+                description: 'Experience an incredible night of live music at the Ferizaj Music Festival. Featuring top local and international artists, this event promises an unforgettable evening filled with diverse musical performances. Join us for a celebration of music, culture, and community in the heart of Ferizaj. Food and beverages will be available on site.',
+                price: 12.00,
+                capacity: 800,
+                email: 'info@ferizajculture.com',
+                phone: '+383 29 333 777',
+                category: 'music',
+                image: 'https://offloadmedia.feverup.com/secretldn.com/wp-content/uploads/2025/07/15152212/293A2466-Enhanced-NR.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Check if events exist, if not add them
+            const hasEvent1 = events.some(e => e.id === 'gjakova-concert-2025');
+            const hasEvent2 = events.some(e => e.id === 'dokufest-closing-ceremony-2025');
+            const hasEvent3 = events.some(e => e.id === 'ferizaj-music-festival-2025');
+>>>>>>> Stashed changes
+            
+            if (!hasEvent1) {
+                events.push(sampleEvent1);
+            }
+            if (!hasEvent2) {
+                events.push(sampleEvent2);
+            }
+<<<<<<< Updated upstream
+=======
+            if (!hasEvent3) {
+                events.push(sampleEvent3);
+            }
+>>>>>>> Stashed changes
+            
+            // Save updated events
+            localStorage.setItem('musicEvents', JSON.stringify(events));
             displayEvents(events);
         })
         .catch(error => {
             console.log('Server load failed, using localStorage:', error);
             let events = JSON.parse(localStorage.getItem('musicEvents') || '[]');
             
-            // If no events exist, create a sample event
-            if (events.length === 0) {
-                const sampleEvent = {
-                    id: 'gjakova-concert-2025',
-                    title: 'Koncert në Gjakovë',
-                    organizer: 'Gjakova Music Festival',
-                    date: '2025-12-25',
-                    time: '20:00',
-                    location: 'Gjakova',
-                    description: 'Një koncert i veçantë me artistë vendas dhe ndërkombëtarë. Një natë e paharrueshme me muzikë të shkëlqyer dhe energji pozitive.',
-                    price: 15.00,
-                    capacity: 500,
-                    email: 'info@gjakovamusic.com',
-                    phone: '+383 44 123 456',
-                    category: 'music',
-                    image: '../images/gjakovamusicevent.jpg',
-                    createdAt: new Date().toISOString()
-                };
-                events.push(sampleEvent);
-                localStorage.setItem('musicEvents', JSON.stringify(events));
+            // Ensure sample events exist (add if missing)
+            const sampleEvent1 = {
+                id: 'gjakova-concert-2025',
+                title: 'Koncert në Gjakovë',
+                organizer: 'Gjakova Music Festival',
+                date: '2025-12-25',
+                time: '20:00',
+                location: 'Gjakova',
+                description: 'Një koncert i veçantë me artistë vendas dhe ndërkombëtarë. Një natë e paharrueshme me muzikë të shkëlqyer dhe energji pozitive.',
+                price: 15.00,
+                capacity: 500,
+                email: 'info@gjakovamusic.com',
+                phone: '+383 44 123 456',
+                category: 'music',
+                image: '../images/gjakovamusicevent.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            const sampleEvent2 = {
+                id: 'dokufest-closing-ceremony-2025',
+                title: 'DokuFest Closing Ceremony',
+                organizer: 'DokuFest International Documentary and Short Film Festival',
+                date: '2025-08-15',
+                time: '21:00',
+                location: 'Prizren, Kosovo',
+                description: 'Join us for the spectacular closing ceremony of DokuFest, one of the most prestigious documentary and short film festivals in the Balkans. Experience an unforgettable evening featuring live music performances, award presentations, and a celebration of cinematic excellence. This grand finale brings together filmmakers, artists, and film enthusiasts from around the world for a night of entertainment and cultural exchange.',
+                price: 20.00,
+                capacity: 1000,
+                email: 'info@dokufest.com',
+                phone: '+383 29 222 555',
+                category: 'music',
+                image: 'https://dokufest.com/images/uploads/_resampled/ClosingCeremony_E.Arapi_00__1.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+<<<<<<< Updated upstream
+            // Check if events exist, if not add them
+            const hasEvent1 = events.some(e => e.id === 'gjakova-concert-2025');
+            const hasEvent2 = events.some(e => e.id === 'dokufest-closing-ceremony-2025');
+=======
+            const sampleEvent3 = {
+                id: 'ferizaj-music-festival-2025',
+                title: 'Ferizaj Music Festival',
+                organizer: 'Ferizaj Cultural Center',
+                date: '2025-09-20',
+                time: '19:00',
+                location: 'Ferizaj, Kosovo',
+                description: 'Experience an incredible night of live music at the Ferizaj Music Festival. Featuring top local and international artists, this event promises an unforgettable evening filled with diverse musical performances. Join us for a celebration of music, culture, and community in the heart of Ferizaj. Food and beverages will be available on site.',
+                price: 12.00,
+                capacity: 800,
+                email: 'info@ferizajculture.com',
+                phone: '+383 29 333 777',
+                category: 'music',
+                image: 'https://offloadmedia.feverup.com/secretldn.com/wp-content/uploads/2025/07/15152212/293A2466-Enhanced-NR.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Check if events exist, if not add them
+            const hasEvent1 = events.some(e => e.id === 'gjakova-concert-2025');
+            const hasEvent2 = events.some(e => e.id === 'dokufest-closing-ceremony-2025');
+            const hasEvent3 = events.some(e => e.id === 'ferizaj-music-festival-2025');
+>>>>>>> Stashed changes
+            
+            if (!hasEvent1) {
+                events.push(sampleEvent1);
             }
+            if (!hasEvent2) {
+                events.push(sampleEvent2);
+            }
+<<<<<<< Updated upstream
+=======
+            if (!hasEvent3) {
+                events.push(sampleEvent3);
+            }
+>>>>>>> Stashed changes
+            
+            // Save updated events
+            localStorage.setItem('musicEvents', JSON.stringify(events));
             
             displayEvents(events);
         });
