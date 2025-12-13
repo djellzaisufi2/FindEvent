@@ -31,11 +31,13 @@ async function loadAllEvents() {
 
     try {
         // Try to load from server
-        const response = await fetch('api/get-events.php');
+        const response = await fetch('./api/get-events.php');
         if (response.ok) {
             const allEvents = await response.json();
-            displayEvents(allEvents);
-            return;
+            if (allEvents && Array.isArray(allEvents) && allEvents.length > 0) {
+                displayEvents(allEvents);
+                return;
+            }
         }
     } catch (error) {
         console.log('Server load failed, using localStorage:', error);
@@ -46,11 +48,37 @@ async function loadAllEvents() {
     let allEvents = [];
 
     categories.forEach(category => {
-        const categoryEvents = JSON.parse(localStorage.getItem(`${category}Events`) || '[]');
+        // Try both naming conventions
+        const categoryEvents1 = JSON.parse(localStorage.getItem(`${category}Events`) || '[]');
+        const categoryEvents2 = JSON.parse(localStorage.getItem(`${category}-events`) || '[]');
+        const categoryEvents = categoryEvents1.length > 0 ? categoryEvents1 : categoryEvents2;
+        
         categoryEvents.forEach(event => {
-            event.category = category; // Add category to event
+            if (!event.category) {
+                event.category = category; // Add category to event if not present
+            }
         });
         allEvents = allEvents.concat(categoryEvents);
+    });
+
+    // Also check for events stored directly in localStorage with different keys
+    const allLocalStorageKeys = Object.keys(localStorage);
+    allLocalStorageKeys.forEach(key => {
+        if (key.includes('event') || key.includes('Event')) {
+            try {
+                const storedData = JSON.parse(localStorage.getItem(key) || '[]');
+                if (Array.isArray(storedData) && storedData.length > 0) {
+                    storedData.forEach(event => {
+                        // Only add if not already in allEvents
+                        if (!allEvents.find(e => e.id === event.id)) {
+                            allEvents.push(event);
+                        }
+                    });
+                }
+            } catch (e) {
+                // Ignore invalid JSON
+            }
+        }
     });
 
     displayEvents(allEvents);
@@ -66,14 +94,29 @@ function displayEvents(events) {
         return;
     }
 
+    // Filter out events that don't have enough data
+    const validEvents = events.filter(event => {
+        return event && 
+               event.title && 
+               event.title.trim() !== '' &&
+               event.date &&
+               event.location &&
+               event.organizer;
+    });
+
+    if (validEvents.length === 0) {
+        eventsGrid.innerHTML = '<div class="no-events"><p>No events yet. Check out our categories to find events!</p></div>';
+        return;
+    }
+
     // Sort events by date (upcoming first)
-    events.sort((a, b) => {
+    validEvents.sort((a, b) => {
         const dateA = new Date(a.date);
         const dateB = new Date(b.date);
         return dateA - dateB;
     });
 
-    eventsGrid.innerHTML = events.map(event => {
+    eventsGrid.innerHTML = validEvents.map(event => {
         // Determine category icon
         const categoryIcons = {
             'kids': '👶',
@@ -100,11 +143,22 @@ function displayEvents(events) {
                 <img src="${escapeHtml(eventImage)}" alt="${escapeHtml(event.title)}" onerror="this.parentElement.style.display='none'">
             </div>` : '';
 
+        // Determine category badge color
+        const categoryColors = {
+            'kids': '#ff6b9d',
+            'music': '#764ba2',
+            'sports': '#667eea',
+            'art': '#f093fb',
+            'bakery': '#ffa500',
+            'reading': '#4ecdc4'
+        };
+        const badgeColor = categoryColors[event.category] || '#667eea';
+        
         return `
             <div class="event-card" data-event-id="${event.id}" data-category="${event.category || ''}">
                 ${imageHtml}
                 <div class="event-card-header">
-                    <span class="event-category-badge">${categoryIcon} ${(event.category || 'event').toUpperCase()}</span>
+                    <span class="event-category-badge" style="background: ${badgeColor}">${categoryIcon} ${(event.category || 'event').toUpperCase()}</span>
                     <h3 class="event-card-title">${escapeHtml(event.title)}</h3>
                 </div>
                 <div class="event-card-body">
@@ -140,7 +194,9 @@ function displayEvents(events) {
 
 // View event details - navigate directly to event details page
 function viewEventDetails(eventId, category) {
-    window.location.href = `../event-details/event-details.html?id=${eventId}`;
+    // Use relative path that works with both Live Server and regular server
+    const eventDetailsPath = `./event-details/event-details.html?id=${eventId}`;
+    window.location.href = eventDetailsPath;
 }
 
 // Initialize when page loads
