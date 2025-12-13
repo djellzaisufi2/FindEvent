@@ -158,9 +158,33 @@ function loadEvents() {
                 createdAt: new Date().toISOString()
             };
             
+<<<<<<< Updated upstream
             // Check if events exist, if not add them
             const hasEvent1 = events.some(e => e.id === 'gjakova-concert-2025');
             const hasEvent2 = events.some(e => e.id === 'dokufest-closing-ceremony-2025');
+=======
+            const sampleEvent3 = {
+                id: 'ferizaj-music-festival-2025',
+                title: 'Ferizaj Music Festival',
+                organizer: 'Ferizaj Cultural Center',
+                date: '2025-09-20',
+                time: '19:00',
+                location: 'Ferizaj, Kosovo',
+                description: 'Experience an incredible night of live music at the Ferizaj Music Festival. Featuring top local and international artists, this event promises an unforgettable evening filled with diverse musical performances. Join us for a celebration of music, culture, and community in the heart of Ferizaj. Food and beverages will be available on site.',
+                price: 12.00,
+                capacity: 800,
+                email: 'info@ferizajculture.com',
+                phone: '+383 29 333 777',
+                category: 'music',
+                image: 'https://offloadmedia.feverup.com/secretldn.com/wp-content/uploads/2025/07/15152212/293A2466-Enhanced-NR.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Check if events exist, if not add them
+            const hasEvent1 = events.some(e => e.id === 'gjakova-concert-2025');
+            const hasEvent2 = events.some(e => e.id === 'dokufest-closing-ceremony-2025');
+            const hasEvent3 = events.some(e => e.id === 'ferizaj-music-festival-2025');
+>>>>>>> Stashed changes
             
             if (!hasEvent1) {
                 events.push(sampleEvent1);
@@ -168,6 +192,12 @@ function loadEvents() {
             if (!hasEvent2) {
                 events.push(sampleEvent2);
             }
+<<<<<<< Updated upstream
+=======
+            if (!hasEvent3) {
+                events.push(sampleEvent3);
+            }
+>>>>>>> Stashed changes
             
             // Save updated events
             localStorage.setItem('musicEvents', JSON.stringify(events));
@@ -212,9 +242,33 @@ function loadEvents() {
                 createdAt: new Date().toISOString()
             };
             
+<<<<<<< Updated upstream
             // Check if events exist, if not add them
             const hasEvent1 = events.some(e => e.id === 'gjakova-concert-2025');
             const hasEvent2 = events.some(e => e.id === 'dokufest-closing-ceremony-2025');
+=======
+            const sampleEvent3 = {
+                id: 'ferizaj-music-festival-2025',
+                title: 'Ferizaj Music Festival',
+                organizer: 'Ferizaj Cultural Center',
+                date: '2025-09-20',
+                time: '19:00',
+                location: 'Ferizaj, Kosovo',
+                description: 'Experience an incredible night of live music at the Ferizaj Music Festival. Featuring top local and international artists, this event promises an unforgettable evening filled with diverse musical performances. Join us for a celebration of music, culture, and community in the heart of Ferizaj. Food and beverages will be available on site.',
+                price: 12.00,
+                capacity: 800,
+                email: 'info@ferizajculture.com',
+                phone: '+383 29 333 777',
+                category: 'music',
+                image: 'https://offloadmedia.feverup.com/secretldn.com/wp-content/uploads/2025/07/15152212/293A2466-Enhanced-NR.jpg',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Check if events exist, if not add them
+            const hasEvent1 = events.some(e => e.id === 'gjakova-concert-2025');
+            const hasEvent2 = events.some(e => e.id === 'dokufest-closing-ceremony-2025');
+            const hasEvent3 = events.some(e => e.id === 'ferizaj-music-festival-2025');
+>>>>>>> Stashed changes
             
             if (!hasEvent1) {
                 events.push(sampleEvent1);
@@ -222,6 +276,12 @@ function loadEvents() {
             if (!hasEvent2) {
                 events.push(sampleEvent2);
             }
+<<<<<<< Updated upstream
+=======
+            if (!hasEvent3) {
+                events.push(sampleEvent3);
+            }
+>>>>>>> Stashed changes
             
             // Save updated events
             localStorage.setItem('musicEvents', JSON.stringify(events));
