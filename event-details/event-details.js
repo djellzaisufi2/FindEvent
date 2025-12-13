@@ -207,7 +207,7 @@ function loadEventDetails() {
         .then(event => {
             if (!event) {
                 // Fallback to localStorage - check all categories
-                const categories = ['kidsEvents', 'sportsEvents', 'musicEvents', 'readingEvents'];
+                const categories = ['kidsEvents', 'sportsEvents', 'musicEvents', 'readingEvents', 'artEvents', 'bakeryEvents'];
                 for (const category of categories) {
                     const events = JSON.parse(localStorage.getItem(category) || '[]');
                     event = events.find(e => e.id === eventId);
@@ -226,7 +226,7 @@ function loadEventDetails() {
         .catch(error => {
             console.log('Server load failed, using localStorage:', error);
             // Check all categories in localStorage
-            const categories = ['kidsEvents', 'sportsEvents', 'musicEvents', 'readingEvents'];
+            const categories = ['kidsEvents', 'sportsEvents', 'musicEvents', 'readingEvents', 'artEvents', 'bakeryEvents'];
             let event = null;
             for (const category of categories) {
                 const events = JSON.parse(localStorage.getItem(category) || '[]');
@@ -245,7 +245,7 @@ function loadEventDetails() {
 
 // Load single event from PHP backend
 function loadEventFromServer(eventId) {
-    return fetch(`api/get-events.php?id=${eventId}`)
+    return fetch(`../api/get-events.php?id=${eventId}`)
         .then(response => {
             if (response.status === 404) {
                 return null;

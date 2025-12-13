@@ -158,11 +158,6 @@ function loadEvents() {
                 createdAt: new Date().toISOString()
             };
             
-<<<<<<< Updated upstream
-            // Check if events exist, if not add them
-            const hasEvent1 = events.some(e => e.id === 'gjakova-concert-2025');
-            const hasEvent2 = events.some(e => e.id === 'dokufest-closing-ceremony-2025');
-=======
             const sampleEvent3 = {
                 id: 'ferizaj-music-festival-2025',
                 title: 'Ferizaj Music Festival',
@@ -184,7 +179,6 @@ function loadEvents() {
             const hasEvent1 = events.some(e => e.id === 'gjakova-concert-2025');
             const hasEvent2 = events.some(e => e.id === 'dokufest-closing-ceremony-2025');
             const hasEvent3 = events.some(e => e.id === 'ferizaj-music-festival-2025');
->>>>>>> Stashed changes
             
             if (!hasEvent1) {
                 events.push(sampleEvent1);
@@ -192,12 +186,9 @@ function loadEvents() {
             if (!hasEvent2) {
                 events.push(sampleEvent2);
             }
-<<<<<<< Updated upstream
-=======
             if (!hasEvent3) {
                 events.push(sampleEvent3);
             }
->>>>>>> Stashed changes
             
             // Save updated events
             localStorage.setItem('musicEvents', JSON.stringify(events));
@@ -242,11 +233,6 @@ function loadEvents() {
                 createdAt: new Date().toISOString()
             };
             
-<<<<<<< Updated upstream
-            // Check if events exist, if not add them
-            const hasEvent1 = events.some(e => e.id === 'gjakova-concert-2025');
-            const hasEvent2 = events.some(e => e.id === 'dokufest-closing-ceremony-2025');
-=======
             const sampleEvent3 = {
                 id: 'ferizaj-music-festival-2025',
                 title: 'Ferizaj Music Festival',
@@ -268,7 +254,6 @@ function loadEvents() {
             const hasEvent1 = events.some(e => e.id === 'gjakova-concert-2025');
             const hasEvent2 = events.some(e => e.id === 'dokufest-closing-ceremony-2025');
             const hasEvent3 = events.some(e => e.id === 'ferizaj-music-festival-2025');
->>>>>>> Stashed changes
             
             if (!hasEvent1) {
                 events.push(sampleEvent1);
@@ -276,12 +261,9 @@ function loadEvents() {
             if (!hasEvent2) {
                 events.push(sampleEvent2);
             }
-<<<<<<< Updated upstream
-=======
             if (!hasEvent3) {
                 events.push(sampleEvent3);
             }
->>>>>>> Stashed changes
             
             // Save updated events
             localStorage.setItem('musicEvents', JSON.stringify(events));

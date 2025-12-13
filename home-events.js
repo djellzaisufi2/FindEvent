@@ -31,7 +31,12 @@ async function loadAllEvents() {
 
     try {
         // Try to load from server
-        const response = await fetch('./api/get-events.php');
+        // Check if we're in index/index.html or root index.html
+        const currentPath = window.location.pathname;
+        const apiPath = currentPath.includes('/index/') 
+            ? '../api/get-events.php'
+            : './api/get-events.php';
+        const response = await fetch(apiPath);
         if (response.ok) {
             const allEvents = await response.json();
             if (allEvents && Array.isArray(allEvents) && allEvents.length > 0) {
@@ -195,7 +200,11 @@ function displayEvents(events) {
 // View event details - navigate directly to event details page
 function viewEventDetails(eventId, category) {
     // Use relative path that works with both Live Server and regular server
-    const eventDetailsPath = `./event-details/event-details.html?id=${eventId}`;
+    // Check if we're in index/index.html or root index.html
+    const currentPath = window.location.pathname;
+    const eventDetailsPath = currentPath.includes('/index/') 
+        ? `../event-details/event-details.html?id=${eventId}`
+        : `./event-details/event-details.html?id=${eventId}`;
     window.location.href = eventDetailsPath;
 }
 

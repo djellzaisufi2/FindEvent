@@ -20,9 +20,9 @@
                     <span class="brand-name">FIND EVENT</span>
                 </div>
                 <div class="top-right">
-                    <a class="sign-in-link" href="../signIn/signIn.html"><span class="sign-in-top">Sign in</span></a>
-                    <span class="heart-icon">♡</span>
-                    <span class="cart-icon">🛒</span>
+                    <a style="text-decoration: none;" href="../signIn/signIn.html"><span class="sign-in-top">Sign in</span></a>
+                    <a href="../favorites/favorites.html" style="text-decoration: none;"><span class="heart-icon">♡</span></a>
+                    <a href="../reservations/reservations.html" style="text-decoration: none;"><span class="cart-icon">🛒</span></a>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
         <section class="hero-slideshow">
             <div class="slideshow-container">
                 <div class="slide active">
-                    <img src="../images/running.webp" alt="Running Events">
+                    <img src="https://www.muchbetteradventures.com/_next/image/?url=https:%2F%2Fimages.ctfassets.net%2Fm5us57n7qfgl%2F4zl0nGSMQyZq8jGm5LFFKE%2F6825e1ade5fcbb5ccad7cac167f4443c%2FHikers_climbing_through_the_forest__Sharr_Mountains__Kosovo._Photo_Butterfly_Outdoor_Adventure.jpg&w=828&q=50" alt="Sharr Mountains Hiking">
                 </div>
                 <div class="slide">
                     <img src="../images/gjakovaevent.webp" alt="Gjakova Events">
@@ -71,14 +71,41 @@
                     <h1 class="hero-title"></h1>
                 </div>
             </div>
-            <!-- Explore Events Button at bottom of slideshow -->
-            <div class="slideshow-cta">
-                <a href="#events" class="btn-primary">Explore Events</a>
-            </div>
         </section>
 
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Intro Section -->
+            <section class="intro-section">
+                <div class="container">
+                    <div class="intro-content">
+                        <h2 class="intro-title">Find Your Next Adventure</h2>
+                        <p class="intro-text">Discover what's happening around you. From concerts to sports, art exhibitions to family fun – we've got you covered.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search & Cities Section -->
+            <section class="search-cities-section">
+                <div class="container">
+                    <div class="search-cities-content">
+                        <div class="search-box">
+                            <h3 class="search-title">Search Events</h3>
+                            <p class="search-text">Find events by name, category, or location</p>
+                            <div class="search-input-wrapper">
+                                <input type="text" class="search-input" placeholder="Search for events...">
+                                <button class="search-btn">Search</button>
+                            </div>
+                        </div>
+                        <div class="cities-box">
+                            <h3 class="cities-title">Explore by City</h3>
+                            <p class="cities-text">Discover events happening in different cities</p>
+                            <a href="../cities/cities.html" class="cities-btn">Go to Cities →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Events Section -->
             <section id="events" class="events-section">
                 <div class="container">
@@ -89,6 +116,93 @@
                 </div>
             </section>
         </main>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-columns">
+                    <div class="footer-column">
+                        <h3 class="footer-title">Use FindEvent</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Create Events</a></li>
+                            <li><a href="#">Pricing</a></li>
+                            <li><a href="#">Event Marketing Platform</a></li>
+                            <li><a href="#">Mobile Ticket App</a></li>
+                            <li><a href="#">Check-In App</a></li>
+                            <li><a href="#">Event Registration Software</a></li>
+                            <li><a href="#">Community Guidelines</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Sitemap</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3 class="footer-title">Plan Events</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Sell Tickets Online</a></li>
+                            <li><a href="#">Performing Arts Ticketing</a></li>
+                            <li><a href="#">Sell Concert Tickets</a></li>
+                            <li><a href="#">Event Payment System</a></li>
+                            <li><a href="#">Event Management Software</a></li>
+                            <li><a href="#">Virtual Events Platform</a></li>
+                            <li><a href="#">QR Codes for Check-In</a></li>
+                            <li><a href="#">Post your event online</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3 class="footer-title">Find Events</h3>
+                        <ul class="footer-links">
+                            <li><a href="../music/music.html">Music Events</a></li>
+                            <li><a href="../sports/sports.html">Sports Events</a></li>
+                            <li><a href="../kids/kids.html">Kids Events</a></li>
+                            <li><a href="../art/art.html">Art Events</a></li>
+                            <li><a href="../bakery/bakery.html">Bakery Events</a></li>
+                            <li><a href="../reading/reading.html">Reading Events</a></li>
+                            <li><a href="../cities/cities.html">Events by City</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3 class="footer-title">Connect With Us</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Contact Support</a></li>
+                            <li><a href="#">Contact Sales</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="#">Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-copyright">
+                        <span>©2025 FindEvent</span>
+                    </div>
+                    <div class="footer-legal">
+                        <a href="#">About</a>
+                        <span>•</span>
+                        <a href="#">Blog</a>
+                        <span>•</span>
+                        <a href="#">Help</a>
+                        <span>•</span>
+                        <a href="#">Careers</a>
+                        <span>•</span>
+                        <a href="#">Press</a>
+                        <span>•</span>
+                        <a href="#">Terms</a>
+                        <span>•</span>
+                        <a href="#">Privacy</a>
+                        <span>•</span>
+                        <a href="#">Accessibility</a>
+                    </div>
+                    <div class="footer-location">
+                        <select class="location-select">
+                            <option>Kosovo</option>
+                            <option>Albania</option>
+                            <option>United States</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </footer>
       
     </div>
     <script src="../script.js"></script>

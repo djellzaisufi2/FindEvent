@@ -158,6 +158,9 @@ function loadEvents() {
                 createdAt: new Date().toISOString()
             };
             
+            // Remove any Football Match events
+            events = events.filter(e => !e.title || !e.title.toLowerCase().includes('football match'));
+            
             // Check if events exist, if not add them
             const hasEvent1 = events.some(e => e.id === 'kosovo-hiking-2025');
             const hasEvent2 = events.some(e => e.id === 'basketball-tournament-2025');
@@ -212,6 +215,9 @@ function loadEvents() {
                 image: 'https://kosovapress.com/eng/admin/wp-content/uploads/2023/12/basketboll-1.jpg',
                 createdAt: new Date().toISOString()
             };
+            
+            // Remove any Football Match events
+            events = events.filter(e => !e.title || !e.title.toLowerCase().includes('football match'));
             
             // Check if events exist, if not add them
             const hasEvent1 = events.some(e => e.id === 'kosovo-hiking-2025');
