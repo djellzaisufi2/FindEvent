@@ -21,8 +21,8 @@
                 </div>
                 <div class="top-right">
                     <a style="text-decoration: none;"  href="signIn/signIn.html"><span class="sign-in-top">Sign in</span></a>
-                    <span class="heart-icon">♡</span>
-                    <span class="cart-icon">🛒</span>
+                    <a href="favorites/favorites.html" style="text-decoration: none;"><span class="heart-icon">♡</span></a>
+                    <a href="reservations/reservations.html" style="text-decoration: none;"><span class="cart-icon">🛒</span></a>
                 </div>
             </div>
         </div>
@@ -66,14 +66,41 @@
                 <span class="indicator" data-slide="1"></span>
                 <span class="indicator" data-slide="2"></span>
             </div>
-            <!-- Explore Events Button at bottom of slideshow -->
-            <div class="slideshow-cta">
-                <a href="#events" class="btn-primary">Explore Events</a>
-            </div>
         </section>
 
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Intro Section -->
+            <section class="intro-section">
+                <div class="container">
+                    <div class="intro-content">
+                        <h2 class="intro-title">Find Your Next Adventure</h2>
+                        <p class="intro-text">Discover what's happening around you. From concerts to sports, art exhibitions to family fun – we've got you covered.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search & Cities Section -->
+            <section class="search-cities-section">
+                <div class="container">
+                    <div class="search-cities-content">
+                        <div class="search-box">
+                            <h3 class="search-title">Search Events</h3>
+                            <p class="search-text">Find events by name, category, or location</p>
+                            <div class="search-input-wrapper">
+                                <input type="text" class="search-input" placeholder="Search for events...">
+                                <button class="search-btn">Search</button>
+                            </div>
+                        </div>
+                        <div class="cities-box">
+                            <h3 class="cities-title">Explore by City</h3>
+                            <p class="cities-text">Discover events happening in different cities</p>
+                            <a href="cities/cities.html" class="cities-btn">Go to Cities →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Events Section -->
             <section id="events" class="events-section">
                 <div class="container">

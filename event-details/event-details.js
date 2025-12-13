@@ -279,10 +279,31 @@ function displayEventDetails(event) {
         backLinkText = '← Back to Events';
     }
     
+    // Check if event is in favorites
+    const favorites = JSON.parse(localStorage.getItem('favoriteEvents') || '[]');
+    const isFavorite = favorites.some(fav => fav.id === event.id);
+    
+    // Check if user is logged in
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    const isLoggedIn = currentUser !== null && currentUser !== undefined;
+    
+    // Check if user has reserved a spot
+    const reservations = JSON.parse(localStorage.getItem('eventReservations') || '[]');
+    const hasReservation = reservations.some(res => res.eventId === event.id);
+    
+    // Get available spots
+    const reservedCount = reservations.filter(res => res.eventId === event.id).length;
+    const availableSpots = event.capacity ? event.capacity - reservedCount : null;
+    
     detailsCard.innerHTML = `
         ${imageHtml}
         <div class="event-details-header">
-            <h1 class="event-details-title">${escapeHtml(event.title)}</h1>
+            <h1 class="event-details-title">
+                <button class="favorite-heart-btn ${isFavorite ? 'favorited' : ''}" onclick="toggleFavorite('${event.id}')" title="${isFavorite ? 'Remove from favorites' : 'Add to favorites'}">
+                    ${isFavorite ? '❤️' : '♡'}
+                </button>
+                ${escapeHtml(event.title)}
+            </h1>
         </div>
         <div class="event-details-info">
             <div class="event-info-simple">
@@ -293,6 +314,18 @@ function displayEventDetails(event) {
                 <span class="info-label">Location:</span>
                 <span class="info-value">${escapeHtml(event.location)}</span>
             </div>
+            ${event.price > 0 ? `
+            <div class="event-info-simple">
+                <span class="info-label">Price:</span>
+                <span class="info-value">${event.price.toFixed(2)} EUR</span>
+            </div>
+            ` : ''}
+            ${availableSpots !== null ? `
+            <div class="event-info-simple">
+                <span class="info-label">Available Spots:</span>
+                <span class="info-value">${availableSpots} / ${event.capacity}</span>
+            </div>
+            ` : ''}
         </div>
         <div class="event-description-section">
             <p class="event-description-full">${escapeHtml(event.description)}</p>
@@ -302,6 +335,13 @@ function displayEventDetails(event) {
             <div id="eventMap" class="event-map-container">
                 <!-- Google Maps will be loaded here -->
             </div>
+        </div>
+        <div class="event-details-actions">
+            ${availableSpots !== null && availableSpots > 0 ? `
+            <button class="reserve-btn-small ${hasReservation ? 'reserved' : ''}" onclick="reserveSpot('${event.id}')" ${hasReservation ? 'disabled' : ''}>
+                ${hasReservation ? '✓ Reserved' : 'Reserve Spot'}
+            </button>
+            ` : ''}
         </div>
         <div class="back-link-container">
             <a href="${backLink}" class="back-link">${backLinkText}</a>
@@ -429,6 +469,109 @@ function showError(message) {
         </div>
     `;
 }
+
+// Toggle favorite event (expose globally)
+window.toggleFavorite = function(eventId) {
+    let favorites = JSON.parse(localStorage.getItem('favoriteEvents') || '[]');
+    const eventIndex = favorites.findIndex(fav => fav.id === eventId);
+    
+    // Get event data from all categories
+    const categories = ['kidsEvents', 'sportsEvents', 'musicEvents', 'readingEvents', 'artEvents', 'bakeryEvents'];
+    let event = null;
+    
+    for (const category of categories) {
+        const events = JSON.parse(localStorage.getItem(category) || '[]');
+        event = events.find(e => e.id === eventId);
+        if (event) break;
+    }
+    
+    if (!event) {
+        showNotification('Event not found', 'error');
+        return;
+    }
+    
+    if (eventIndex > -1) {
+        // Remove from favorites
+        favorites.splice(eventIndex, 1);
+        showNotification('Removed from favorites', 'success');
+    } else {
+        // Add to favorites
+        favorites.push(event);
+        showNotification('Added to favorites', 'success');
+    }
+    
+    localStorage.setItem('favoriteEvents', JSON.stringify(favorites));
+    
+    // Reload event details to update button
+    loadEventDetails();
+};
+
+// Reserve spot for event (expose globally)
+window.reserveSpot = function(eventId) {
+    // Check if user is logged in
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    const isLoggedIn = currentUser !== null && currentUser !== undefined;
+    
+    if (!isLoggedIn) {
+        // Redirect to sign in with eventId parameter
+        window.location.href = `../signIn/signIn.html?reserve=${eventId}`;
+        return;
+    }
+    
+    // Get event data
+    const categories = ['kidsEvents', 'sportsEvents', 'musicEvents', 'readingEvents', 'artEvents', 'bakeryEvents'];
+    let event = null;
+    
+    for (const category of categories) {
+        const events = JSON.parse(localStorage.getItem(category) || '[]');
+        event = events.find(e => e.id === eventId);
+        if (event) break;
+    }
+    
+    if (!event) {
+        showNotification('Event not found', 'error');
+        return;
+    }
+    
+    // Check if event requires payment
+    if (event.price && event.price > 0) {
+        // Redirect to payment page
+        window.location.href = `../payment/payment.html?eventId=${eventId}`;
+        return;
+    }
+    
+    // Free event - proceed with reservation
+    let reservations = JSON.parse(localStorage.getItem('eventReservations') || '[]');
+    
+    // Check if already reserved
+    if (reservations.some(res => res.eventId === eventId)) {
+        showNotification('You have already reserved a spot for this event', 'info');
+        return;
+    }
+    
+    // Check capacity
+    const reservedCount = reservations.filter(res => res.eventId === eventId).length;
+    if (event.capacity && reservedCount >= event.capacity) {
+        showNotification('No spots available', 'error');
+        return;
+    }
+    
+    // Add reservation
+    const reservation = {
+        eventId: eventId,
+        eventTitle: event.title,
+        reservedAt: new Date().toISOString(),
+        reservationId: Date.now().toString()
+    };
+    
+    reservations.push(reservation);
+    localStorage.setItem('eventReservations', JSON.stringify(reservations));
+    
+    showNotification('Spot reserved successfully!', 'success');
+    
+    // Reload event details to update button
+    loadEventDetails();
+};
 
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');

@@ -59,6 +59,35 @@
     color: #333;
     margin: 0 0 1rem 0;
     line-height: 1.3;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.favorite-heart-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.3rem 0.5rem;
+    transition: transform 0.2s ease;
+    line-height: 1;
+    color: #ff7b54;
+    flex-shrink: 0;
+}
+
+.favorite-heart-btn:hover {
+    transform: scale(1.3);
+    color: #ff6b40;
+}
+
+.favorite-heart-btn.favorited {
+    animation: heartBeat 0.3s ease;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
 }
 
 .event-details-category {
@@ -260,12 +289,39 @@
 .event-details-actions {
     display: flex;
     gap: 1rem;
-    margin-top: 2rem;
-    padding-top: 2rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
     border-top: 2px solid rgba(255, 123, 84, 0.1);
     flex-wrap: wrap;
+    justify-content: center;
 }
 
+.reserve-btn-small {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #4a5568;
+    color: white;
+}
+
+.reserve-btn-small:hover:not(:disabled) {
+    background: #2d3748;
+    transform: translateY(-1px);
+}
+
+.reserve-btn-small:disabled,
+.reserve-btn-small.reserved {
+    background: #48bb78;
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.favorite-btn,
 .contact-organizer-btn,
 .share-event-btn,
 .delete-event-details-btn {
